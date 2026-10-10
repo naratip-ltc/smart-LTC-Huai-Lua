@@ -125,7 +125,6 @@ header.app-header p{margin:3px 0 0;font-size:12px;opacity:.92;}
   #_fbBanner{font-size:12px!important;padding:8px 12px!important;}
 
   /* Support items list chips */
-  #recSupportList{flex-direction:column;}
 
   /* Material supply rows */
   .mat-item-row .row{flex-direction:row!important;gap:6px;}
@@ -626,6 +625,13 @@ header.app-header h1{color:#fff;-webkit-text-stroke:1.6px #2E0B61;
   filter:drop-shadow(0 0 1.2px rgba(255,255,255,.9));}
 header.app-header .app-header-user span{color:#F5EDFF;}
 @media(max-width:600px){header.app-header h1{text-shadow:0 1px 0 #E879F9,0 2px 0 #C026D3,0 3px 0 #86198F,0 6px 10px rgba(20,4,45,.5);}}
+
+/* สิ่งสนับสนุน: กลุ่มตามหมวด รายการเรียงต่อกัน */
+.rec-sup-group{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:8px 12px;margin-bottom:6px;border-radius:12px;background:var(--lav-50);border:1px solid #E7DEFD;}
+.rec-sup-head{font-family:'Kanit',sans-serif;font-weight:600;color:var(--primary-dark);font-size:14px;margin-right:2px;}
+.rec-support-item{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #D9CBFF;border-radius:999px;padding:3px 6px 3px 12px;font-size:13px;box-shadow:0 1px 0 #E4DAFF;}
+.rec-support-item button{border:none;background:#F3EEFF;color:#7C3AED;cursor:pointer;font-size:11px;width:20px;height:20px;border-radius:50%;line-height:1;padding:0;}
+.rec-support-item button:hover{background:#E11D48;color:#fff;}
 </style>
 </head>
 <body>
@@ -1057,36 +1063,30 @@ header.app-header .app-header-user span{color:#F5EDFF;}
       </select>
     </div>
     <div class="field" style="margin-top:10px;">
-      <label>กิจกรรมฟื้นฟูสภาพร่างกาย (เลือกได้มากกว่า 1 ข้อ)</label>
-      <div class="ms-dropdown" id="rehabDropdown">
-        <button type="button" class="ms-toggle" id="rehabDropdownToggle">
-          <span id="rehabDropdownLabel">-- เลือกกิจกรรม --</span>
-          <span class="ms-arrow">▾</span>
-        </button>
-        <div class="ms-panel" id="rehabDropdownPanel">
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="1"> 1. ประเมินสภาพร่างกายและความสามารถในการทำกิจวัตรประจำวัน (ADL)</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="2"> 2. จัดท่าทางที่ถูกต้องและเปลี่ยนท่าทุก 2 ชั่วโมง</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="3"> 3. บริหารข้อและกล้ามเนื้อ (ROM Exercise)</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="4"> 4. ฝึกการลุกนั่งจากเตียง</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="5"> 5. ฝึกการทรงตัว</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="6"> 6. ฝึกยืน</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="7"> 7. ฝึกเดินด้วยอุปกรณ์ช่วยเดิน</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="8"> 8. ฝึกการเคลื่อนย้ายตัว (เตียง–รถเข็น–เก้าอี้)</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="9"> 9. ฝึกกิจวัตรประจำวัน เช่น แต่งตัว อาบน้ำ รับประทานอาหาร</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="10"> 10. นวดผ่อนคลายกล้ามเนื้อ</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="11"> 11. ยืดเหยียดกล้ามเนื้อเพื่อลดการหดรั้ง</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="12"> 12. กระตุ้นการไหลเวียนโลหิตและป้องกันข้อยึดติด</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="13"> 13. ฝึกการหายใจและการไออย่างมีประสิทธิภาพ</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="14"> 14. ดูแลและป้องกันแผลกดทับ</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="15"> 15. ให้คำแนะนำผู้ดูแลในการฟื้นฟูร่างกายที่บ้าน</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="16"> 16. ติดตามและประเมินผลการฟื้นฟู</label>
-          <label class="checkbox-item"><input type="checkbox" id="recRehabOtherCb"> 17. อื่น ๆ (ระบุ)</label>
-        </div>
+      <label>กิจกรรมฟื้นฟูสภาพร่างกาย (เลือกได้หลายข้อ) <span id="rehabDropdownLabel" style="color:var(--primary);font-weight:600;"></span></label>
+      <div class="checkbox-group rehab-group">
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="1"> 1. ประเมินสภาพร่างกายและความสามารถในการทำกิจวัตรประจำวัน (ADL)</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="2"> 2. จัดท่าทางที่ถูกต้องและเปลี่ยนท่าทุก 2 ชั่วโมง</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="3"> 3. บริหารข้อและกล้ามเนื้อ (ROM Exercise)</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="4"> 4. ฝึกการลุกนั่งจากเตียง</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="5"> 5. ฝึกการทรงตัว</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="6"> 6. ฝึกยืน</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="7"> 7. ฝึกเดินด้วยอุปกรณ์ช่วยเดิน</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="8"> 8. ฝึกการเคลื่อนย้ายตัว (เตียง–รถเข็น–เก้าอี้)</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="9"> 9. ฝึกกิจวัตรประจำวัน เช่น แต่งตัว อาบน้ำ รับประทานอาหาร</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="10"> 10. นวดผ่อนคลายกล้ามเนื้อ</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="11"> 11. ยืดเหยียดกล้ามเนื้อเพื่อลดการหดรั้ง</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="12"> 12. กระตุ้นการไหลเวียนโลหิตและป้องกันข้อยึดติด</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="13"> 13. ฝึกการหายใจและการไออย่างมีประสิทธิภาพ</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="14"> 14. ดูแลและป้องกันแผลกดทับ</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="15"> 15. ให้คำแนะนำผู้ดูแลในการฟื้นฟูร่างกายที่บ้าน</label>
+        <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="16"> 16. ติดตามและประเมินผลการฟื้นฟู</label>
+        <label class="checkbox-item"><input type="checkbox" id="recRehabOtherCb"> 17. อื่น ๆ (ระบุ)</label>
       </div>
       <input type="text" id="recRehabOtherText" placeholder="ระบุกิจกรรมฟื้นฟูอื่นๆ" style="display:none;margin-top:8px;">
     </div>
     <div class="field" style="margin-top:10px;">
-      <label>กิจกรรมที่ได้ทำในการดูแล (เลือกได้หลายข้อ)</label>
+      <label>กิจกรรมการดูแล (เลือกได้หลายข้อ)</label>
       <div class="checkbox-group">
         <label class="checkbox-item"><input type="checkbox" class="recCareActivity" value="1"> ปฏิบัติตาม care plan</label>
         <label class="checkbox-item"><input type="checkbox" class="recCareActivity" value="2"> ดูแลความสะอาดร่างกายคนไข้</label>
@@ -1124,7 +1124,7 @@ header.app-header .app-header-user span{color:#F5EDFF;}
         </div>
         <button type="button" class="btn btn-secondary btn-sm" id="recAddSupportBtn" style="align-self:flex-end;">+ เพิ่มรายการ</button>
       </div>
-      <div id="recSupportList" style="margin-top:8px;display:flex;flex-direction:column;gap:6px;"></div>
+      <div id="recSupportList" style="margin-top:8px;"></div>
       <div id="recSupportAlert" style="display:none;margin-top:8px;padding:10px 14px;border-radius:8px;background:#FFF3E0;border:1.5px solid #F0A93B;font-size:13px;color:#8A6100;">
         🔔 <b>แจ้งเตือน CM/Admin:</b> ผู้สูงอายุรายนี้มีความต้องการสิ่งสนับสนุนจากคลังอุปกรณ์ กรุณาดำเนินการยืมหรือเบิกจ่ายให้ <b id="recSupportAlertNames"></b>
       </div>
@@ -4056,22 +4056,9 @@ document.getElementById('recFoodType').addEventListener('change', function(){
 });
 
 /* กิจกรรมฟื้นฟูสภาพร่างกาย: dropdown แบบกำหนดเอง หน้าตาเหมือนช่องเลือกทั่วไป แต่เลือกได้หลายข้อ */
-const rehabDropdownToggle = document.getElementById('rehabDropdownToggle');
-const rehabDropdownPanel = document.getElementById('rehabDropdownPanel');
-rehabDropdownToggle.addEventListener('click', (e)=>{
-  e.stopPropagation();
-  rehabDropdownPanel.classList.toggle('open');
-  rehabDropdownToggle.classList.toggle('open');
-});
-document.addEventListener('click', (e)=>{
-  if(!document.getElementById('rehabDropdown').contains(e.target)){
-    rehabDropdownPanel.classList.remove('open');
-    rehabDropdownToggle.classList.remove('open');
-  }
-});
 function updateRehabDropdownLabel(){
   const checkedCount = document.querySelectorAll('.recRehabActivity:checked').length + (document.getElementById('recRehabOtherCb').checked ? 1 : 0);
-  document.getElementById('rehabDropdownLabel').textContent = checkedCount>0 ? `เลือกแล้ว ${checkedCount} รายการ` : '-- เลือกกิจกรรม --';
+  document.getElementById('rehabDropdownLabel').textContent = checkedCount>0 ? `— เลือกแล้ว ${checkedCount} รายการ` : '';
 }
 document.querySelectorAll('.recRehabActivity').forEach(cb=>cb.addEventListener('change', updateRehabDropdownLabel));
 document.getElementById('recRehabOtherCb').addEventListener('change', function(){
@@ -4105,18 +4092,40 @@ document.getElementById('recRehabOtherCb').addEventListener('change', function()
     if(existing.some(el=>el.dataset.category===cat && el.dataset.itemType===item)){
       toast('รายการนี้เพิ่มไปแล้ว','error'); return;
     }
-    const tag = document.createElement('div');
+    const tag = document.createElement('span');
     tag.className = 'rec-support-item';
     tag.dataset.category = cat;
     tag.dataset.itemType = item;
-    tag.style.cssText = 'display:inline-flex;align-items:center;gap:8px;background:#F7F4FE;border:1px solid #DCD0FA;border-radius:20px;padding:4px 12px;font-size:13px;';
-    tag.innerHTML = `<span>${catLabel}: <b>${item}</b></span><button type="button" style="border:none;background:none;cursor:pointer;color:#999;font-size:14px;" onclick="this.parentElement.remove();updateRecSupportAlert();">✕</button>`;
+    tag.innerHTML = `<b>${item}</b><button type="button" title="ลบรายการนี้" onclick="this.parentElement.remove();regroupRecSupport();updateRecSupportAlert();">✕</button>`;
     list.appendChild(tag);
+    regroupRecSupport();
     updateRecSupportAlert();
     document.getElementById('recSupportCategory').value='';
     document.getElementById('recSupportItem').innerHTML='<option value="">-- เลือกหมวดหมู่ก่อน --</option>';
   });
 })();
+/* จัดรายการสิ่งสนับสนุนเป็นกลุ่มตามหมวด: 1. ครุภัณฑ์การแพทย์ 2. วัสดุการแพทย์ — รายการเรียงต่อกันในบรรทัดเดียว */
+const SUPPORT_CAT_ORDER = ['durable','material'];
+function supportCatSort(a,b){ const ia=SUPPORT_CAT_ORDER.indexOf(a), ib=SUPPORT_CAT_ORDER.indexOf(b); return (ia<0?99:ia)-(ib<0?99:ib) || String(a).localeCompare(String(b)); }
+function regroupRecSupport(){
+  const list = document.getElementById('recSupportList');
+  const items = Array.from(list.querySelectorAll('.rec-support-item'));
+  const cats = Array.from(new Set(items.map(el=>el.dataset.category))).sort(supportCatSort);
+  const groups = cats.map((cat,i)=>{
+    const g = document.createElement('div'); g.className = 'rec-sup-group';
+    const h = document.createElement('span'); h.className = 'rec-sup-head';
+    h.textContent = `${i+1}. ${CATEGORY_LABELS_INV[cat]||cat}:`;
+    g.appendChild(h);
+    items.filter(el=>el.dataset.category===cat).forEach(el=>g.appendChild(el));
+    return g;
+  });
+  list.innerHTML = '';
+  groups.forEach(g=>list.appendChild(g));
+}
+function groupedSupportItemsHTML(items){
+  const cats = Array.from(new Set((items||[]).map(it=>it.category))).sort(supportCatSort);
+  return cats.map((cat,i)=>`<div style="margin:2px 0;"><b>${i+1}. ${CATEGORY_LABELS_INV[cat]||cat}:</b> ${(items||[]).filter(it=>it.category===cat).map(it=>escHtml(it.itemType)).join(', ')}</div>`).join('');
+}
 function updateRecSupportAlert(){
   const items = Array.from(document.querySelectorAll('.rec-support-item'));
   const alertEl = document.getElementById('recSupportAlert');
@@ -6529,7 +6538,7 @@ function openElderlyProfile(id){
     return `<div style="padding:6px 0;border-bottom:1px solid #EEF2F5;font-size:12.5px;"><b>${r.date}</b> — CG: ${r.cgName} | BP: ${r.bp} | ADL: ${r.adlScore} ${r.note ? `| <i>${r.note.slice(0,60)}${r.note.length>60?'...':''}</i>` : ''}</div>`;
   }).join('') || '<p class="muted">ยังไม่มีประวัติการเยี่ยม</p>';
   const supHtml = lastSupportItems.length
-    ? lastSupportItems.map(it=>`<span style="background:#F7F4FE;border:1px solid #DCD0FA;border-radius:20px;padding:2px 12px;font-size:12px;">${CATEGORY_LABELS_INV[it.category]||it.category}: ${it.itemType}</span>`).join(' ')
+    ? groupedSupportItemsHTML(lastSupportItems)
     : '<span class="muted">ไม่มีความต้องการที่บันทึกไว้</span>';
   document.getElementById('elderlyProfileBody').innerHTML = `
     <div style="background:linear-gradient(120deg,#5B3FB5,#A58BF0);padding:18px 22px;border-radius:12px 12px 0 0;margin:-18px -18px 16px;display:flex;align-items:center;gap:16px;color:#fff;">
