@@ -610,6 +610,22 @@ header.app-header p.hdr-sub{display:flex;flex-wrap:wrap;align-items:center;gap:8
   header.app-header p.hdr-sub{gap:5px;margin-top:5px;}
   .hdr-sub .hdr-fac,.hdr-sub .hdr-addr{font-size:10.5px;padding:2px 9px;}
 }
+
+/* ---------- Header v4: ม่วงเข้มสดใสเงางาม (ไม่ไล่ขาว) ---------- */
+header.app-header{
+  background:
+    radial-gradient(ellipse 45% 140% at 38% 50%,rgba(192,38,211,.45) 0%,rgba(192,38,211,0) 70%),
+    linear-gradient(180deg,#8E44EC 0%,#7A2FE0 48%,#6420C9 52%,#4C1D95 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.25),0 10px 28px rgba(46,16,101,.35);
+}
+header.app-header::before{content:"";position:absolute;left:0;right:0;top:0;height:50%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.06));}
+header.app-header > *{position:relative;z-index:1;}
+header.app-header h1{color:#fff;-webkit-text-stroke:1.6px #2E0B61;
+  text-shadow:0 1px 0 #E879F9,0 2px 0 #D946EF,0 3px 0 #C026D3,0 4px 0 #A21CAF,0 5px 0 #86198F,0 9px 16px rgba(20,4,45,.55);
+  filter:drop-shadow(0 0 1.2px rgba(255,255,255,.9));}
+header.app-header .app-header-user span{color:#F5EDFF;}
+@media(max-width:600px){header.app-header h1{text-shadow:0 1px 0 #E879F9,0 2px 0 #C026D3,0 3px 0 #86198F,0 6px 10px rgba(20,4,45,.5);}}
 </style>
 </head>
 <body>
@@ -1015,8 +1031,9 @@ header.app-header p.hdr-sub{display:flex;flex-wrap:wrap;align-items:center;gap:8
           <option value="">-- เลือก --</option>
           <option value="1">1. อาหารธรรมดา</option>
           <option value="2">2. อาหารอ่อน</option>
-          <option value="3">3. อาหารแยกตามประเภท</option>
+          <option value="3">3. อาหารเฉพาะโรค ระบุ...</option>
         </select>
+        <input type="text" id="recFoodTypeNote" placeholder="ระบุอาหารเฉพาะโรค เช่น อาหารเบาหวาน, อาหารลดเค็ม (โรคไต/ความดัน)" style="display:none;margin-top:6px;">
       </div>
       <div class="field"><label>คะแนนการประเมิน (ADL) การเยี่ยมครั้งนี้ (0-11)</label><input type="number" id="recAdlScore" min="0" max="11" placeholder="0-11"></div>
     </div>
@@ -1028,18 +1045,6 @@ header.app-header p.hdr-sub{display:flex;flex-wrap:wrap;align-items:center;gap:8
       <label class="checkbox-item" style="padding-left:0;"><input type="checkbox" id="recIsEndOfLife"> อยู่ในระยะสุดท้ายของชีวิต</label>
     </div>
     <div class="info-box" id="recHealthStatusBox" style="margin-top:10px;padding:10px 12px;border-radius:8px;background:#F7FBFA;border:1px solid var(--border);font-size:13px;">กรุณากรอกคะแนนการประเมิน ADL ครั้งนี้ เพื่อให้ระบบสรุปภาวะสุขภาพและกลุ่มให้อัตโนมัติ</div>
-    <div class="field" id="recFoodTypeDetailWrap" style="margin-top:10px;display:none;">
-      <label>ประเภทอาหารผู้ป่วยติดเตียง (เลือกได้มากกว่า 1 ข้อ)</label>
-      <div class="checkbox-group">
-        <label class="checkbox-item"><input type="checkbox" class="recFoodTypeDetail" value="1"> 1. อาหารธรรมดา</label>
-        <label class="checkbox-item"><input type="checkbox" class="recFoodTypeDetail" value="2"> 2. อาหารอ่อน</label>
-        <label class="checkbox-item"><input type="checkbox" class="recFoodTypeDetail" value="3"> 3. อาหารบดละเอียด</label>
-        <label class="checkbox-item"><input type="checkbox" class="recFoodTypeDetail" value="4"> 4. อาหารปั่น</label>
-        <label class="checkbox-item"><input type="checkbox" class="recFoodTypeDetail" value="5"> 5. อาหารเหลว</label>
-        <label class="checkbox-item"><input type="checkbox" class="recFoodTypeDetail" value="6"> 6. อาหารทางสายให้อาหาร (NG Tube)</label>
-        <label class="checkbox-item"><input type="checkbox" class="recFoodTypeDetail" value="7"> 7. อาหารทางการแพทย์สูตรเฉพาะโรค</label>
-      </div>
-    </div>
     <div class="field" style="margin-top:10px;">
       <label>สุขภาพจิตและอารมณ์</label>
       <select id="recMentalHealth">
@@ -1067,7 +1072,7 @@ header.app-header p.hdr-sub{display:flex;flex-wrap:wrap;align-items:center;gap:8
           <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="6"> 6. ฝึกยืน</label>
           <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="7"> 7. ฝึกเดินด้วยอุปกรณ์ช่วยเดิน</label>
           <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="8"> 8. ฝึกการเคลื่อนย้ายตัว (เตียง–รถเข็น–เก้าอี้)</label>
-          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="9"> 9. ฝึกกิจวัตรประจำวัน (ADL) เช่น แต่งตัว อาบน้ำ รับประทานอาหาร</label>
+          <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="9"> 9. ฝึกกิจวัตรประจำวัน เช่น แต่งตัว อาบน้ำ รับประทานอาหาร</label>
           <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="10"> 10. นวดผ่อนคลายกล้ามเนื้อ</label>
           <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="11"> 11. ยืดเหยียดกล้ามเนื้อเพื่อลดการหดรั้ง</label>
           <label class="checkbox-item"><input type="checkbox" class="recRehabActivity" value="12"> 12. กระตุ้นการไหลเวียนโลหิตและป้องกันข้อยึดติด</label>
@@ -1251,11 +1256,14 @@ header.app-header p.hdr-sub{display:flex;flex-wrap:wrap;align-items:center;gap:8
 
   <div class="card">
     <div class="row">
+      <div class="field" style="flex:2;min-width:220px;"><label>🔍 ค้นหาผู้ป่วย</label><input type="text" id="filterElderlySearch" placeholder="พิมพ์ชื่อ, นามสกุล, เลขบัตรประชาชน หรือรหัส"></div>
+      <div class="field"><label>🏘 หมู่บ้าน</label><select id="filterElderlyMoo"><option value="">ทุกหมู่บ้าน</option></select></div>
       <div class="field"><label>กรองตาม CG</label><select id="filterElderlyCg"><option value="">ทั้งหมด</option></select></div>
       <div class="field"><label>กรองตามโหมด PDF</label><select id="filterElderlyMode"><option value="">ทั้งหมด</option><option value="normal">ปกติ</option><option value="obt">อบต.</option></select></div>
       <button class="btn btn-danger btn-sm" id="bulkDeleteElderlyBtn" style="align-self:flex-end;">🗑 ลบที่เลือก (<span id="bulkDeleteCount">0</span>)</button>
       <button class="btn btn-primary btn-sm" id="addElderlyBtn" style="align-self:flex-end;">+ เพิ่มผู้สูงอายุ</button>
     </div>
+    <p id="elderlyFilterCount" style="margin:10px 0 0;font-size:13.5px;color:var(--primary-dark);"></p>
     <p class="muted" style="margin-top:6px;">กลุ่ม ADL และจำนวนครั้งที่ต้องเยี่ยม/เดือน คำนวณจากคะแนน ADL อัตโนมัติเสมอ (ดูเกณฑ์ได้ในตารางด้านบน) — ติ๊กเลือกได้หลายคนเพื่อลบเป็นกลุ่ม หรือกดปุ่ม 🗑 รายคนได้ตามปกติ</p>
     <table style="margin-top:10px;"><thead><tr><th><input type="checkbox" id="selectAllElderlyCb"></th><th>รหัส</th><th>ชื่อ</th><th>อายุ</th><th>CG</th><th>คะแนน ADL</th><th>กลุ่ม ADL</th><th>คะแนน TAI</th><th>ลักษณะ/ประเภทผู้สูงอายุ</th><th>เยี่ยม/เดือน</th><th>โหมด</th><th>สถานะ</th><th></th></tr></thead>
     <tbody id="elderlyTable"></tbody></table>
@@ -2286,7 +2294,7 @@ const MEDICATION_LABELS = {'1':'กินยาสม่ำเสมอ','2':'�
 const DAILY_ACTIVITY_LABELS = {'1':'ช่วยเหลือตัวเองได้','2':'ช่วยเหลือตัวเองได้เล็กน้อย ต้องให้ญาติคอยดูแล','3':'ช่วยเหลือตัวเองไม่ได้'};
 const ELIMINATION_LABELS = {'1':'ปกติ','2':'ใช้สายสวนปัสสาวะ','3':'มีปัญหาการขับถ่าย'};
 const FEEDING_LABELS = {'1':'รับประทานเอง','2':'ผู้ดูแลหรือญาติต้องป้อนอาหาร','3':'ให้อาหารทางสายยาง'};
-const FOODTYPE_LABELS = {'1':'อาหารธรรมดา','2':'อาหารอ่อน','3':'อาหารแยกตามประเภท'};
+const FOODTYPE_LABELS = {'1':'อาหารธรรมดา','2':'อาหารอ่อน','3':'อาหารเฉพาะโรค'};
 const FOODTYPE_DETAIL_LABELS = {'1':'อาหารธรรมดา','2':'อาหารอ่อน','3':'อาหารบดละเอียด','4':'อาหารปั่น','5':'อาหารเหลว','6':'อาหารทางสายให้อาหาร (NG Tube)','7':'อาหารทางการแพทย์สูตรเฉพาะโรค'};
 const MENTAL_HEALTH_LABELS = {'1':'ปกติ แจ่มใส ร่าเริง','2':'วิตกกังวล / เครียด','3':'ซึมเศร้า เบื่อหน่าย','4':'หงุดหงิดง่าย / ก้าวร้าว','5':'สับสน ไม่รับรู้เวลา สถานที่ หรือบุคคล'};
 const REHAB_ACTIVITY_LABELS = {
@@ -2298,7 +2306,7 @@ const REHAB_ACTIVITY_LABELS = {
   '6':'ฝึกยืน',
   '7':'ฝึกเดินด้วยอุปกรณ์ช่วยเดิน',
   '8':'ฝึกการเคลื่อนย้ายตัว (เตียง–รถเข็น–เก้าอี้)',
-  '9':'ฝึกกิจวัตรประจำวัน (ADL) เช่น แต่งตัว อาบน้ำ รับประทานอาหาร',
+  '9':'ฝึกกิจวัตรประจำวัน เช่น แต่งตัว อาบน้ำ รับประทานอาหาร',
   '10':'นวดผ่อนคลายกล้ามเนื้อ',
   '11':'ยืดเหยียดกล้ามเนื้อเพื่อลดการหดรั้ง',
   '12':'กระตุ้นการไหลเวียนโลหิตและป้องกันข้อยึดติด',
@@ -4042,7 +4050,9 @@ document.getElementById('recPhotos').addEventListener('change', e=>{
 });
 
 document.getElementById('recFoodType').addEventListener('change', function(){
-  document.getElementById('recFoodTypeDetailWrap').style.display = (this.value === '3') ? 'block' : 'none';
+  const note = document.getElementById('recFoodTypeNote');
+  note.style.display = (this.value === '3') ? 'block' : 'none';
+  if(this.value === '3') note.focus(); else note.value = '';
 });
 
 /* กิจกรรมฟื้นฟูสภาพร่างกาย: dropdown แบบกำหนดเอง หน้าตาเหมือนช่องเลือกทั่วไป แต่เลือกได้หลายข้อ */
@@ -4142,7 +4152,9 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
     }
   }
   const careActivities = Array.from(document.querySelectorAll('.recCareActivity:checked')).map(cb=>cb.value);
-  const foodTypeDetail = Array.from(document.querySelectorAll('.recFoodTypeDetail:checked')).map(cb=>cb.value);
+  const foodTypeDetail = [];
+  const foodTypeNote = document.getElementById('recFoodTypeNote').value.trim();
+  if(document.getElementById('recFoodType').value === '3' && !foodTypeNote){ toast('กรุณาระบุอาหารเฉพาะโรค','error'); document.getElementById('recFoodTypeNote').focus(); return; }
   const rehabActivities = Array.from(document.querySelectorAll('.recRehabActivity:checked')).map(cb=>cb.value);
   const rehabOtherChecked = document.getElementById('recRehabOtherCb').checked;
   const rehabOtherText = document.getElementById('recRehabOtherText').value.trim();
@@ -4164,7 +4176,7 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
     elimination: document.getElementById('recElimination').value || '',
     feedingMethod: document.getElementById('recFeedingMethod').value || '',
     foodType: document.getElementById('recFoodType').value || '',
-    foodTypeDetail,
+    foodTypeDetail, foodTypeNote: (document.getElementById('recFoodType').value === '3') ? foodTypeNote : '',
     mentalHealth: document.getElementById('recMentalHealth').value || '',
     rehabActivities,
     rehabOther: rehabOtherChecked ? rehabOtherText : '',
@@ -4236,8 +4248,8 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
     document.getElementById('recElimination').value='';
     document.getElementById('recFeedingMethod').value='';
     document.getElementById('recFoodType').value='';
-    document.getElementById('recFoodTypeDetailWrap').style.display='none';
-    document.querySelectorAll('.recFoodTypeDetail:checked').forEach(cb=>cb.checked=false);
+    document.getElementById('recFoodTypeNote').value='';
+    document.getElementById('recFoodTypeNote').style.display='none';
     document.getElementById('recMentalHealth').value='';
     document.querySelectorAll('.recRehabActivity:checked').forEach(cb=>cb.checked=false);
     document.getElementById('recRehabOtherCb').checked=false;
@@ -5165,15 +5177,43 @@ function deleteCg(code){
 ============================================================= */
 document.getElementById('filterElderlyCg').addEventListener('change', renderElderlyTable);
 document.getElementById('filterElderlyMode').addEventListener('change', renderElderlyTable);
+document.getElementById('filterElderlyMoo').addEventListener('change', renderElderlyTable);
+document.getElementById('filterElderlySearch').addEventListener('input', renderElderlyTable);
+function renderElderlyMooOptions(){
+  const sel = document.getElementById('filterElderlyMoo'); if(!sel) return;
+  const prev = sel.value;
+  const moos = new Set(Object.values(STATE.elderly).map(e=>String(e.moo||'').trim()).filter(Boolean));
+  (typeof VILLAGES!=='undefined' ? VILLAGES : []).forEach(v=>moos.add(String(v.moo)));
+  const list = Array.from(moos).sort((a,b)=>(parseInt(a,10)||999)-(parseInt(b,10)||999) || a.localeCompare(b));
+  const cnt = m => Object.values(STATE.elderly).filter(e=>String(e.moo||'').trim()===m).length;
+  sel.innerHTML = '<option value="">ทุกหมู่บ้าน</option>' + list.map(m=>{
+    const v = (typeof VILLAGES!=='undefined' ? VILLAGES : []).find(x=>String(x.moo)===m);
+    return `<option value="${escHtml(m)}">หมู่ ${escHtml(m)}${v&&v.name?' '+escHtml(v.name):''} (${cnt(m)} คน)</option>`;
+  }).join('') + (Object.values(STATE.elderly).some(e=>!String(e.moo||'').trim()) ? '<option value="__none__">ไม่ระบุหมู่</option>' : '');
+  if(prev && Array.from(sel.options).some(o=>o.value===prev)) sel.value = prev;
+}
 function renderElderlyTable(){
+  renderElderlyMooOptions();
   const fCg = document.getElementById('filterElderlyCg').value;
   const fMode = document.getElementById('filterElderlyMode').value;
-  const rows = Object.keys(STATE.elderly).sort().filter(id=>{
+  const fMoo = document.getElementById('filterElderlyMoo').value;
+  const q = (document.getElementById('filterElderlySearch').value||'').trim().toLowerCase();
+  const qNoSpace = q.replace(/[\s-]+/g,'');
+  const allIds = Object.keys(STATE.elderly).sort();
+  const filteredIds = allIds.filter(id=>{
     const e = STATE.elderly[id];
     if(fCg && e.cgCode!==fCg) return false;
     if(fMode && e.pdfMode!==fMode) return false;
+    if(fMoo){ const m = String(e.moo||'').trim(); if(fMoo==='__none__' ? m!=='' : m!==fMoo) return false; }
+    if(q){
+      const hay = [(e.name||''), id, (e.idCard||''), (e.houseNo||'')].join(' ').toLowerCase();
+      if(!hay.includes(q) && !hay.replace(/[\s-]+/g,'').includes(qNoSpace)) return false;
+    }
     return true;
-  }).map(id=>{
+  });
+  const cntEl = document.getElementById('elderlyFilterCount');
+  if(cntEl) cntEl.innerHTML = `แสดง <b>${filteredIds.length}</b> จากทั้งหมด <b>${allIds.length}</b> คน`;
+  const rows = filteredIds.map(id=>{
     const e = STATE.elderly[id];
     const cgName = STATE.cgs[e.cgCode]?.name || e.cgCode || '-';
     const isDischarged = e.status === 'discharged';
@@ -5959,7 +5999,7 @@ function buildVisitBlockHTML(v, elderly, cg, imgW, imgH, fontScale){
   const feedLabel = FEEDING_LABELS[a.feedingMethod] || '-';
   const foodLabel = FOODTYPE_LABELS[a.foodType] || '-';
   const foodDetailList = (a.foodTypeDetail||[]).map(c=>FOODTYPE_DETAIL_LABELS[c]).filter(Boolean);
-  const foodDetailText = foodDetailList.length ? ` [${foodDetailList.join(', ')}]` : '';
+  const foodDetailText = (a.foodTypeNote ? `: ${a.foodTypeNote}` : '') + (foodDetailList.length ? ` [${foodDetailList.join(', ')}]` : '');
   const mentalLabel = a.mentalHealth ? (MENTAL_HEALTH_LABELS[a.mentalHealth] || '-') : '';
   const adlText = (a.adlScore!==undefined && a.adlScore!=='') ? a.adlScore : '-';
   const healthStatusText = a.healthStatus || '';
