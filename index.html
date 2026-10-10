@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ระบบการดูแลผู้สูงอายุและผู้ที่มีภาวะพึ่งพิง (LTC) - รพ.สต.บ้านห้วยหลัว</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&family=Anuphan:wght@300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -482,6 +482,134 @@ main{max-width:1240px;}
 .cg-status-sel.off{background:#FFF0F3!important;color:#C23552;border-color:#FBD7DF!important;}
 .cg-type-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;background:var(--lav-100);color:var(--primary-dark);white-space:nowrap;}
 .cg-type-tag.econ{background:#FFF4E6;color:#A55A12;}
+
+/* =====================================================================
+   THEME v2 — Vivid 3D (สีสด มีมิติ คมชัด) — ทับธีมพาสเทลด้านบน
+===================================================================== */
+/* ---------- Header: ม่วงพาสเทลไล่โทนขาว ---------- */
+header.app-header{
+  background:
+    radial-gradient(600px 160px at 12% 0%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%),
+    linear-gradient(100deg,#B79CFF 0%,#CDB8FF 22%,#E3D7FF 48%,#F4EEFF 72%,#FFFFFF 100%);
+  border-bottom:none;
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 -3px 0 rgba(124,92,214,.25) inset,0 10px 28px rgba(91,63,181,.18);
+}
+header.app-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+  background:linear-gradient(90deg,#7C3AED,#C026D3,#F472B6,#A78BFA,#7C3AED);}
+header.app-header img.app-logo{width:64px;height:64px;border:3px solid #fff;
+  box-shadow:0 0 0 3px #8B5CF6,0 0 0 6px #fff,0 10px 22px rgba(76,29,149,.35);}
+/* ชื่อระบบ: ตัวอักษร 3D ขอบ 2 ชั้น (ขอบในม่วงเข้ม + ขอบนอกชมพูอ่อน) */
+header.app-header h1{
+  font-size:27px;font-weight:800;line-height:1.35;letter-spacing:.3px;color:#FFFFFF;
+  -webkit-text-stroke:1.6px #4C1D95;paint-order:stroke fill;
+  text-shadow:
+    0 1px 0 #6D28D9,0 2px 0 #6D28D9,0 3px 0 #5B21B6,0 4px 0 #4C1D95,0 5px 0 #3B0F7A,
+    0 0 0 #fff,
+    2px 6px 0 rgba(244,114,182,.55),
+    0 9px 14px rgba(46,16,101,.38);
+  filter:drop-shadow(0 0 1.2px #FBCFE8) drop-shadow(0 0 1.2px #FBCFE8);
+}
+header.app-header p{color:#4C3A86;font-weight:600;font-size:13px;margin-top:6px;}
+header.app-header .app-header-user span{color:#4C3A86;font-weight:600;}
+header.app-header .app-header-user .btn{background:linear-gradient(180deg,#fff,#F3EEFF);color:#5B21B6;border:1px solid #D9CBFF;
+  box-shadow:0 3px 0 #D3C2FF,0 6px 12px rgba(91,63,181,.15);}
+header.app-header .app-header-user .btn:hover{transform:translateY(-1px);}
+@media(max-width:600px){
+  header.app-header h1{font-size:16px;-webkit-text-stroke:1px #4C1D95;
+    text-shadow:0 1px 0 #6D28D9,0 2px 0 #5B21B6,0 3px 0 #4C1D95,1px 4px 0 rgba(244,114,182,.55),0 6px 10px rgba(46,16,101,.35);}
+  header.app-header img.app-logo{width:44px;height:44px;}
+}
+
+/* ---------- Tabs: ปุ่ม 3D ---------- */
+nav.tabs{background:linear-gradient(180deg,#FFFFFF,#F7F3FF);border-bottom:1px solid #E6DCFF;padding:8px;}
+nav.tabs button{font-weight:700;color:#5E5480;}
+nav.tabs button.active{color:#fff;background:linear-gradient(135deg,#7C3AED,#A855F7 60%,#C084FC);
+  box-shadow:0 4px 0 #5B21B6,0 8px 16px rgba(124,58,237,.35),inset 0 1px 0 rgba(255,255,255,.45);text-shadow:0 1px 0 rgba(0,0,0,.2);}
+
+/* ---------- Cards ---------- */
+.card{border:1px solid #E9E1FF;box-shadow:0 1px 0 #fff inset,0 2px 0 #E4DAFF,0 14px 30px rgba(91,63,181,.10);}
+.card h3{position:relative;padding-left:14px;}
+.card h3::before{content:"";position:absolute;left:0;top:3px;bottom:12px;width:5px;border-radius:4px;background:linear-gradient(180deg,#7C3AED,#EC4899);}
+
+/* ---------- Stat tiles: สีสด 3D ---------- */
+.stat{position:relative;overflow:hidden;border:none;border-radius:18px;padding:18px 12px 16px;
+  background:linear-gradient(145deg,#8B5CF6,#C4B5FD);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -4px 0 rgba(0,0,0,.12),0 6px 0 var(--edge,#6D28D9),0 14px 24px rgba(46,16,101,.22);
+  transition:transform .15s,box-shadow .15s;}
+.stat::before{content:"";position:absolute;left:-20%;right:-20%;top:-60%;height:110%;
+  background:radial-gradient(ellipse at center,rgba(255,255,255,.45),rgba(255,255,255,0) 60%);pointer-events:none;}
+.stat::after{content:"";position:absolute;right:-18px;bottom:-26px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.14);pointer-events:none;}
+.stat:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -4px 0 rgba(0,0,0,.12),0 9px 0 var(--edge,#6D28D9),0 20px 30px rgba(46,16,101,.28);}
+.stat b,.stat span{position:relative;z-index:1;color:#fff!important;}
+.stat b{font-size:34px;font-weight:800;text-shadow:0 2px 0 rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.18);}
+.stat span{font-size:12.5px;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.25);}
+.stat.stat-info   {--edge:#5B21B6;background:linear-gradient(145deg,#6D28D9,#8B5CF6 55%,#A78BFA);}
+.stat.stat-purple {--edge:#86198F;background:linear-gradient(145deg,#A21CAF,#D946EF 55%,#E879F9);}
+.stat.stat-success{--edge:#047857;background:linear-gradient(145deg,#059669,#10B981 55%,#34D399);}
+.stat.stat-danger {--edge:#9F1239;background:linear-gradient(145deg,#E11D48,#F43F5E 55%,#FB7185);}
+.stat.stat-warning{--edge:#C2410C;background:linear-gradient(145deg,#EA580C,#F97316 55%,#FB923C);}
+.stat.stat-teal   {--edge:#0F766E;background:linear-gradient(145deg,#0D9488,#14B8A6 55%,#2DD4BF);}
+.stat.stat-cyan   {--edge:#0369A1;background:linear-gradient(145deg,#0284C7,#0EA5E9 55%,#38BDF8);}
+.stat.stat-yellow {--edge:#A16207;background:linear-gradient(145deg,#CA8A04,#EAB308 55%,#FACC15);}
+@media(max-width:480px){.stat b{font-size:24px;}}
+
+/* ---------- Buttons 3D ---------- */
+.btn-primary{background:linear-gradient(180deg,#8B5CF6,#7C3AED);box-shadow:0 3px 0 #5B21B6,0 8px 16px rgba(124,58,237,.28),inset 0 1px 0 rgba(255,255,255,.35);}
+.btn-primary:hover{background:linear-gradient(180deg,#9D74F8,#7C3AED);}
+.btn-danger{background:linear-gradient(180deg,#F43F5E,#E11D48);box-shadow:0 3px 0 #9F1239,0 8px 14px rgba(225,29,72,.25);}
+.btn-secondary{background:linear-gradient(180deg,#FFFFFF,#EFE7FF);color:#5B21B6;box-shadow:inset 0 0 0 1px #D9CBFF,0 3px 0 #DCCEFF;}
+.btn-ghost{background:linear-gradient(180deg,#FFFFFF,#F2EEFA);box-shadow:inset 0 0 0 1px #E6E0F5,0 2px 0 #E3DCF3;}
+.btn:active{transform:translateY(2px);}
+
+/* ---------- Other colourful blocks ---------- */
+.eq-action-btn{box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 5px 0 rgba(0,0,0,.18),0 14px 24px rgba(46,16,101,.2);text-shadow:0 1px 2px rgba(0,0,0,.2);}
+.eq-action-add{background:linear-gradient(135deg,#6D28D9,#A855F7);}
+.adl-summary-item{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 0 rgba(0,0,0,.18),0 10px 18px rgba(0,0,0,.12);text-shadow:0 1px 2px rgba(0,0,0,.2);}
+.adl-infographic thead th{background:linear-gradient(120deg,#7C3AED,#A855F7);color:#fff;}
+.login-banner{background:linear-gradient(135deg,#6D28D9 0%,#8B5CF6 45%,#C4B5FD 100%);}
+
+/* ---------- Header v3: ม่วงตามภาพตัวอย่าง (ม่วงลาเวนเดอร์ + แสงชมพูกลาง) ไล่ขาวเล็กน้อยด้านขวา ---------- */
+header.app-header{
+  background:
+    radial-gradient(ellipse 38% 160% at 42% 50%,rgba(240,186,236,.95) 0%,rgba(240,186,236,0) 70%),
+    radial-gradient(ellipse 30% 120% at 8% 0%,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 70%),
+    linear-gradient(100deg,#A673D4 0%,#B585D8 30%,#BE8FDA 60%,#CDA6E2 82%,#EADCF6 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 28px rgba(91,40,140,.28);
+}
+header.app-header h1{color:#fff;-webkit-text-stroke:1.6px #3B0F7A;
+  text-shadow:0 1px 0 #6D28D9,0 2px 0 #5B21B6,0 3px 0 #4C1D95,0 4px 0 #3B0F7A,0 5px 0 #2E0B61,
+    0 8px 14px rgba(36,8,74,.45);
+  filter:drop-shadow(0 0 1.4px #FFE4F6) drop-shadow(0 0 1px #FFE4F6);}
+header.app-header p{color:#fff;font-weight:600;text-shadow:0 1px 2px rgba(59,15,122,.55);}
+header.app-header .app-header-user span{color:#fff;text-shadow:0 1px 2px rgba(59,15,122,.55);}
+header.app-header .app-header-user .btn{background:rgba(255,255,255,.92);color:#5B21B6;border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 3px 0 rgba(91,33,182,.35),0 6px 14px rgba(59,15,122,.2);}
+header.app-header::after{background:linear-gradient(90deg,#6D28D9,#A855F7,#F0ABFC,#A855F7,#6D28D9);}
+@media(max-width:600px){header.app-header h1{text-shadow:0 1px 0 #6D28D9,0 2px 0 #4C1D95,0 3px 0 #3B0F7A,0 6px 10px rgba(36,8,74,.4);}}
+
+/* ---------- Typography v3: Kanit (หัวข้อ) + Anuphan (เนื้อหา) ---------- */
+body,button,input,select,textarea{font-family:'Anuphan','IBM Plex Sans Thai','Sarabun',sans-serif;}
+header.app-header h1,.card h3,.modal-box h3,nav.tabs button,.stat b,.stat span,.btn,
+.login-banner .brand-name,.login-banner h2,.eq-action-btn,.adl-summary-item{font-family:'Kanit','Anuphan',sans-serif;}
+header.app-header h1{font-weight:700;letter-spacing:.4px;font-size:28px;}
+.card h3{font-weight:600;font-size:16.5px;}
+nav.tabs button{font-weight:500;font-size:14px;}
+.btn{font-weight:500;}
+.stat b{font-weight:700;}
+.stat span{font-weight:500;font-size:13px;}
+/* บรรทัดชื่อ รพ.สต. — ป้ายแก้วโปร่งแสง */
+header.app-header p.hdr-sub{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 0;text-shadow:none;}
+.hdr-sub .hdr-fac{font-family:'Kanit',sans-serif;font-weight:600;font-size:14px;color:#4C1D95;letter-spacing:.3px;
+  padding:4px 14px;border-radius:999px;background:linear-gradient(180deg,#FFFFFF,#F3E8FF);
+  box-shadow:0 2px 0 rgba(91,33,182,.35),0 6px 14px rgba(59,15,122,.18),inset 0 1px 0 #fff;}
+.hdr-sub .hdr-addr{font-family:'Kanit',sans-serif;font-weight:500;font-size:13px;color:#fff;letter-spacing:.3px;
+  padding:4px 14px;border-radius:999px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);text-shadow:0 1px 2px rgba(59,15,122,.5);}
+@media(max-width:600px){
+  header.app-header h1{font-size:17px;}
+  header.app-header p.hdr-sub{gap:5px;margin-top:5px;}
+  .hdr-sub .hdr-fac,.hdr-sub .hdr-addr{font-size:10.5px;padding:2px 9px;}
+}
 </style>
 </head>
 <body>
@@ -694,7 +822,7 @@ main{max-width:1240px;}
   <img class="app-logo" id="appHeaderLogo" alt="โลโก้ รพ.สต.บ้านห้วยหลัว">
   <div class="app-header-text">
     <h1>ระบบการดูแลผู้สูงอายุและผู้ที่มีภาวะพึ่งพิง (LTC)</h1>
-    <p>รพ.สต.บ้านห้วยหลัว <span class="facAddr">ต.ห้วยหลัว อ.บ้านม่วง จ.สกลนคร</span></p>
+    <p class="hdr-sub"><span class="hdr-fac">🏥 รพ.สต.บ้านห้วยหลัว</span><span class="hdr-addr">📍 <span class="facAddr">ต.ห้วยหลัว อ.บ้านม่วง จ.สกลนคร</span></span></p>
   </div>
   <div class="app-header-user">
     <span id="currentUserLabel"></span>
@@ -9377,6 +9505,15 @@ renderDashboard();
 renderDrill();
 renderEquipmentElderlySelect();
 renderEquipmentTable();
+
+/* ให้แถบเมนูติดอยู่ใต้ Header พอดีทุกขนาดจอ (Header สูงขึ้นหลังปรับดีไซน์) */
+(function syncNavTop(){
+  const h = document.querySelector('header.app-header'), n = document.querySelector('nav.tabs');
+  if(!h || !n) return;
+  const f = ()=>{ n.style.top = h.offsetHeight + 'px'; };
+  f(); window.addEventListener('resize', f); window.addEventListener('load', f);
+  if(window.ResizeObserver) new ResizeObserver(f).observe(h);
+})();
 </script>
 </body>
 </html>
