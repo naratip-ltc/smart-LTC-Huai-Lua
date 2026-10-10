@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ระบบการดูแลผู้สูงอายุและผู้ที่มีภาวะพึ่งพิง (LTC) - รพ.สต.บ้านห้วยหลัว</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -13,9 +13,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 :root{
-  --primary:#1571BA; --primary-dark:#0F5590; --secondary:#43C1F1; --danger:#D8503A;
-  --bg:#EAF6FC; --card:#ffffff; --text:#1B2E3B; --muted:#5B7A8C; --border:#D6ECF7;
-  --radius:12px; --shadow:0 2px 10px rgba(21,113,186,.10);
+  --primary:#7C5CD6; --primary-dark:#5B3FB5; --secondary:#A58BF0; --danger:#D8503A;
+  --bg:#F7F4FE; --card:#ffffff; --text:#2B2341; --muted:#6F6688; --border:#E9E2FB;
+  --radius:12px; --shadow:0 2px 10px rgba(124,92,214,.10);
 }
 *{box-sizing:border-box;}
 body{margin:0;font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);padding-bottom:40px;}
@@ -177,14 +177,14 @@ nav.tabs{display:flex;overflow-x:auto;background:#fff;position:sticky;top:64px;z
 nav.tabs::-webkit-scrollbar{height:4px;}
 nav.tabs::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
 nav.tabs button{flex:1 0 auto;background:none;border:none;padding:12px 10px;font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s,background .15s;}
-nav.tabs button:hover{color:var(--primary-dark);background:#F4FBFF;}
+nav.tabs button:hover{color:var(--primary-dark);background:#F6F2FF;}
 nav.tabs button.active{color:var(--primary);border-bottom-color:var(--primary);}
 main{max-width:920px;margin:0 auto;padding:14px;}
 .tabpanel{display:none;}
 .tabpanel.active{display:block;animation:fade .2s ease;}
 @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:14px;border:1px solid rgba(21,113,186,.06);transition:box-shadow .2s;}
-.card:hover{box-shadow:0 4px 16px rgba(21,113,186,.14);}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:14px;border:1px solid rgba(124,92,214,.06);transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 16px rgba(124,92,214,.14);}
 .card h3{margin:0 0 10px;font-size:15px;color:var(--primary-dark);padding-bottom:9px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
 .field{display:flex;flex-direction:column;gap:4px;flex:1;min-width:120px;}
@@ -192,15 +192,15 @@ main{max-width:920px;margin:0 auto;padding:14px;}
 select,input[type=text],input[type=number],input[type=tel],input[type=file],input[type=date],input[type=password],textarea{
   font-family:inherit;padding:9px 10px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:#fff;width:100%;transition:border-color .15s,box-shadow .15s;min-height:42px;
 }
-select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(21,113,186,.12);}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(124,92,214,.12);}
 .ms-dropdown{position:relative;}
 .ms-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:inherit;padding:9px 10px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:#fff;color:var(--text);cursor:pointer;transition:border-color .15s,box-shadow .15s;}
 .ms-toggle:hover{border-color:var(--primary);}
-.ms-toggle.open{border-color:var(--primary);box-shadow:0 0 0 3px rgba(21,113,186,.12);}
+.ms-toggle.open{border-color:var(--primary);box-shadow:0 0 0 3px rgba(124,92,214,.12);}
 .ms-toggle .ms-arrow{color:var(--muted);font-size:11px;transition:transform .15s;flex-shrink:0;}
 .ms-toggle.open .ms-arrow{transform:rotate(180deg);}
 .ms-toggle span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;}
-.ms-panel{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:60;background:#fff;border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(21,113,186,.18);padding:8px;max-height:280px;overflow-y:auto;}
+.ms-panel{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:60;background:#fff;border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(124,92,214,.18);padding:8px;max-height:280px;overflow-y:auto;}
 .ms-panel.open{display:block;}
 .ms-option{display:flex;align-items:center;padding:8px 10px;border-radius:6px;cursor:pointer;font-size:13.5px;transition:background .15s;}
 .tai-option-btn{padding:7px 13px;border:1.5px solid var(--border);border-radius:20px;background:#fff;font-size:12.5px;cursor:pointer;transition:all .15s;font-family:inherit;}
@@ -210,7 +210,7 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary)
 .eq-action-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.2);}
 .eq-action-btn .eq-action-ico{font-size:26px;line-height:1;}
 .eq-action-btn .eq-action-sub{display:block;font-size:11.5px;font-weight:500;opacity:.9;margin-top:2px;}
-.eq-action-add{background:linear-gradient(135deg,#0F5590,#43C1F1);}
+.eq-action-add{background:linear-gradient(135deg,#5B3FB5,#A58BF0);}
 .eq-action-loan{background:linear-gradient(135deg,#B8860B,#F0A93B);}
 .eq-action-material{background:linear-gradient(135deg,#1B5E20,#4CAF50);}
 .eq-txn-toggle.active{border-color:transparent;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.15);}
@@ -218,7 +218,7 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary)
 .eq-txn-toggle.active#eqTxnReturnBtn{background:linear-gradient(135deg,#B8860B,#F0A93B);}
 .tai-option-btn:hover{border-color:var(--primary);}
 .tai-option-btn.selected{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:700;}
-.ms-option:hover{background:#F4FBFF;}
+.ms-option:hover{background:#F6F2FF;}
 .ms-option.empty{color:var(--muted);cursor:default;}
 .ms-option.empty:hover{background:none;}
 .plan-elderly-card{border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
@@ -229,7 +229,7 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--primary)
 .plan-day-btn.selected{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:700;}
 textarea{resize:vertical;min-height:60px;}
 .btn{border:none;border-radius:8px;padding:10px 16px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:filter .15s,transform .1s,box-shadow .15s;min-height:42px;}
-.btn:hover{filter:brightness(1.06);box-shadow:0 3px 10px rgba(21,113,186,.18);}
+.btn:hover{filter:brightness(1.06);box-shadow:0 3px 10px rgba(124,92,214,.18);}
 .btn:active{transform:translateY(1px);}
 .btn-primary{background:var(--primary);color:#fff;}
 .btn-primary:hover{background:var(--primary-dark);}
@@ -239,11 +239,11 @@ textarea{resize:vertical;min-height:60px;}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
 .btn-sm{padding:6px 10px;font-size:12.5px;}
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;}
-.stat{background:#EDF8FD;border-radius:12px;padding:14px 10px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:transform .15s,box-shadow .15s;}
+.stat{background:#F4F0FE;border-radius:12px;padding:14px 10px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:transform .15s,box-shadow .15s;}
 .stat:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.14);}
 .stat b{display:block;font-size:24px;color:var(--primary-dark);font-weight:800;letter-spacing:.3px;}
 .stat span{font-size:11.5px;color:var(--muted);font-weight:600;}
-.stat.stat-info{background:linear-gradient(135deg,#0F5590,#43C1F1);}
+.stat.stat-info{background:linear-gradient(135deg,#5B3FB5,#A58BF0);}
 .stat.stat-info b,.stat.stat-info span{color:#fff;}
 .stat.stat-success{background:linear-gradient(135deg,#1B5E20,#4CAF50);}
 .stat.stat-success b,.stat.stat-success span{color:#fff;}
@@ -265,7 +265,7 @@ th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--border);}
 .inv-table th:last-child,.inv-table td:last-child{border-right:none;}
 .inv-table thead th{border-bottom:1.5px solid var(--border);}
 th{color:var(--muted);font-weight:600;font-size:12px;}
-.progress-bar{background:#D6ECF7;border-radius:20px;height:10px;overflow:hidden;margin-top:4px;}
+.progress-bar{background:#E9E2FB;border-radius:20px;height:10px;overflow:hidden;margin-top:4px;}
 .progress-bar .fill{background:var(--primary);height:100%;transition:width .3s;}
 .breadcrumb{display:flex;gap:6px;font-size:13px;color:var(--secondary);margin-bottom:10px;flex-wrap:wrap;}
 .breadcrumb span{cursor:pointer;text-decoration:underline;}
@@ -275,11 +275,11 @@ th{color:var(--muted);font-weight:600;font-size:12px;}
 .list-item .meta{font-size:12px;color:var(--muted);}
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;}
 .photo-card{background:#fafcfb;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .15s,box-shadow .15s;}
-.photo-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(21,113,186,.2);}
+.photo-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(124,92,214,.2);}
 .photo-card img{width:100%;height:150px;object-fit:cover;display:block;background:#eef2f1;}
 .photo-card .pc-body{padding:8px 9px;font-size:11.5px;line-height:1.5;}
 .photo-card .pc-actions{display:flex;gap:4px;padding:0 6px 6px;}
-.chip{background:#DCF0FA;color:var(--primary-dark);border-radius:16px;padding:4px 10px;font-size:12px;display:inline-flex;align-items:center;gap:4px;}
+.chip{background:#EFE9FF;color:var(--primary-dark);border-radius:16px;padding:4px 10px;font-size:12px;display:inline-flex;align-items:center;gap:4px;}
 .chip button{background:none;border:none;color:var(--danger);cursor:pointer;font-weight:700;}
 .modal-overlay{position:fixed;inset:0;background:rgba(20,35,30,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:16px;}
 .modal-overlay.show{display:flex;}
@@ -299,7 +299,7 @@ th{color:var(--muted);font-weight:600;font-size:12px;}
 .calendar-grid .day.empty{visibility:hidden;}
 .checkbox-group{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:4px;}
 .checkbox-item{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:400;cursor:pointer;padding:6px 8px;border-radius:6px;transition:background .15s;}
-.checkbox-item:hover{background:#F4FBFF;}
+.checkbox-item:hover{background:#F6F2FF;}
 .checkbox-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--primary);cursor:pointer;flex-shrink:0;}
 .checkbox-item input{width:16px;height:16px;flex-shrink:0;}
 .adl-infographic{width:100%;border-collapse:collapse;font-size:13px;}
@@ -339,8 +339,8 @@ th{color:var(--muted);font-weight:600;font-size:12px;}
 #pdfRenderRoot{position:fixed;left:-99999px;top:0;}
 .filter-bar{margin-bottom:12px;}
 @media(max-width:480px){.stat b{font-size:16px;}}
-.login-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#EAF6FC,#D6ECF7);display:flex;align-items:center;justify-content:center;z-index:1000;padding:16px;}
-.login-box{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 6px 28px rgba(21,113,186,.2);max-width:380px;width:100%;}
+.login-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#F7F4FE,#E9E2FB);display:flex;align-items:center;justify-content:center;z-index:1000;padding:16px;}
+.login-box{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 6px 28px rgba(124,92,214,.2);max-width:380px;width:100%;}
 .login-banner{background:linear-gradient(135deg,var(--primary),var(--secondary));padding:26px 20px 20px;text-align:center;color:#fff;}
 .login-banner .login-logo{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin-bottom:10px;}
 .login-banner .brand-name{font-size:26px;font-weight:800;letter-spacing:1.5px;margin:2px 0 2px;background:linear-gradient(90deg,#fff,#EAF9FF,#fff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 10px rgba(0,0,0,.15);}
@@ -363,6 +363,125 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
 .status-tag.pending{background:#fff6df;color:#a3760a;}
 .status-tag.disabled{background:#fdece5;color:#D85A30;}
 .status-tag.discharged{background:#eef0f2;color:#5B6B79;}
+
+/* =====================================================================
+   THEME — Lavender & White (ม่วงพาสเทล / ขาว)
+===================================================================== */
+:root{
+  --primary:#7C5CD6; --primary-dark:#5B3FB5; --secondary:#A58BF0; --danger:#E0526A;
+  --bg:#F8F6FD; --card:#ffffff; --text:#2B2341; --muted:#6F6688; --border:#ECE6FA;
+  --ink:#3B2A7A; --lav-50:#FAF8FF; --lav-100:#F3EEFF; --lav-200:#E7DEFD; --lav-300:#D5C6FA;
+  --radius:16px; --shadow:0 1px 2px rgba(43,35,65,.04),0 8px 24px rgba(124,92,214,.07);
+}
+body{font-family:'IBM Plex Sans Thai','Sarabun',sans-serif;
+  background:radial-gradient(1100px 520px at 0% -8%,#EEE6FF 0%,rgba(238,230,255,0) 60%),
+             radial-gradient(900px 460px at 105% 0%,#FCEBF7 0%,rgba(252,235,247,0) 58%),var(--bg);
+  background-attachment:fixed;-webkit-font-smoothing:antialiased;}
+::selection{background:#E2D6FF;}
+*::-webkit-scrollbar{width:10px;height:10px;}
+*::-webkit-scrollbar-thumb{background:#DCD0FA;border-radius:10px;border:2px solid transparent;background-clip:padding-box;}
+
+/* Header — soft glass */
+header.app-header{background:linear-gradient(115deg,rgba(243,238,255,.96) 0%,rgba(255,255,255,.94) 55%,rgba(250,240,255,.96) 100%);
+  color:var(--text);border-bottom:1px solid #EBE3FC;box-shadow:0 6px 24px rgba(124,92,214,.08);
+  -webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);}
+header.app-header img.app-logo{border:3px solid #fff;box-shadow:0 0 0 1px #E2D8FB,0 6px 16px rgba(124,92,214,.22);}
+header.app-header h1{color:var(--ink);font-weight:700;letter-spacing:0;}
+header.app-header p{color:var(--muted);opacity:1;font-weight:500;}
+header.app-header .app-header-user span{color:var(--muted);opacity:1;}
+header.app-header .app-header-user .btn{background:#fff;color:var(--primary-dark);border:1px solid #E2D8FB;box-shadow:none;}
+header.app-header .app-header-user .btn:hover{background:var(--lav-100);color:var(--primary-dark);}
+
+/* Tabs — pills */
+nav.tabs{background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:none;border-bottom:1px solid #EEE8FB;padding:6px 8px;gap:4px;}
+nav.tabs button{border-radius:10px;border-bottom:none;color:var(--muted);font-weight:600;}
+nav.tabs button:hover{background:var(--lav-50);color:var(--primary-dark);}
+nav.tabs button.active{background:var(--lav-100);color:var(--primary-dark);box-shadow:inset 0 0 0 1px #E2D8FB;}
+
+/* Surfaces */
+.card{border-radius:var(--radius);border:1px solid #EFE9FB;box-shadow:var(--shadow);}
+.card:hover{box-shadow:0 1px 2px rgba(43,35,65,.05),0 12px 32px rgba(124,92,214,.10);}
+.card h3{color:var(--ink);font-weight:700;border-bottom-color:#F1ECFC;}
+.modal-overlay{background:rgba(43,35,65,.42);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);}
+.modal-box{border-radius:20px;box-shadow:0 24px 60px rgba(43,35,65,.25);}
+.modal-box h3{color:var(--ink);}
+
+/* Inputs */
+select,input[type=text],input[type=number],input[type=tel],input[type=file],input[type=date],input[type=password],textarea{
+  border-color:#E4DCF8;border-radius:10px;background:#fff;color:var(--text);}
+select:hover,input:hover,textarea:hover{border-color:#D5C6FA;}
+select:focus,input:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(124,92,214,.14);}
+.field label{color:var(--muted);}
+
+/* Buttons */
+.btn{border-radius:10px;}
+.btn:hover{box-shadow:0 6px 16px rgba(124,92,214,.18);}
+.btn-primary{background:linear-gradient(135deg,#7C5CD6,#9474E8);color:#fff;}
+.btn-primary:hover{background:linear-gradient(135deg,#6D4FC8,#8566DE);}
+.btn-secondary{background:var(--lav-100);color:var(--primary-dark);box-shadow:inset 0 0 0 1px #E2D8FB;}
+.btn-ghost{background:#F4F1FA;color:var(--ink);}
+.btn-danger{background:#E0526A;}
+
+/* Stat tiles — pastel */
+.stat{background:var(--lav-50);border:1px solid #EFE9FB;border-radius:16px;box-shadow:none;padding:16px 10px;}
+.stat:hover{box-shadow:0 10px 24px rgba(124,92,214,.12);}
+.stat b{font-size:28px;color:var(--ink);font-weight:700;}
+.stat span{color:var(--muted);}
+.stat.stat-info{background:linear-gradient(140deg,#F3EEFF,#E6DCFF);border-color:#E3D8FD;}
+.stat.stat-info b{color:#5B3FB5;} .stat.stat-info span{color:#5E5480;}
+.stat.stat-purple{background:linear-gradient(140deg,#F9EEFF,#EEDDFF);border-color:#EAD8FD;}
+.stat.stat-purple b{color:#8338C9;} .stat.stat-purple span{color:#66507E;}
+.stat.stat-success{background:linear-gradient(140deg,#EEFAF3,#DCF3E6);border-color:#D3EEDF;}
+.stat.stat-success b{color:#1E7A4B;} .stat.stat-success span{color:#47665A;}
+.stat.stat-danger{background:linear-gradient(140deg,#FFF0F3,#FFE0E7);border-color:#FBD7DF;}
+.stat.stat-danger b{color:#C23552;} .stat.stat-danger span{color:#7A4C58;}
+.stat.stat-warning{background:linear-gradient(140deg,#FFF6EC,#FFE9D2);border-color:#FBE0C4;}
+.stat.stat-warning b{color:#B45A0B;} .stat.stat-warning span{color:#7A5A3F;}
+.stat.stat-teal{background:linear-gradient(140deg,#ECFAF8,#D6F2EE);border-color:#CDEBE6;}
+.stat.stat-teal b{color:#0F7468;} .stat.stat-teal span{color:#456661;}
+.stat.stat-cyan{background:linear-gradient(140deg,#EEF6FF,#DDEBFF);border-color:#D4E4FB;}
+.stat.stat-cyan b{color:#2E64B5;} .stat.stat-cyan span{color:#4A5D7A;}
+.stat.stat-yellow{background:linear-gradient(140deg,#FFFAE8,#FFF0BF);border-color:#F7E6A8;}
+.stat.stat-yellow b{color:#8A6100;} .stat.stat-yellow span{color:#6F5D2E;}
+
+/* Action tiles in equipment tab */
+.eq-action-btn{border-radius:16px;box-shadow:0 8px 20px rgba(43,35,65,.10);}
+.eq-action-add{background:linear-gradient(135deg,#6D4FD1,#A285F0);}
+
+/* Tables */
+th{color:var(--muted);background:var(--lav-50);font-weight:600;}
+th,td{border-bottom-color:#F0EBFB;}
+tbody tr:hover td{background:#FCFBFF;}
+.adl-infographic thead th{background:var(--lav-100);color:var(--ink);}
+.adl-infographic tbody tr:hover td{background:#fff;}
+
+/* Small bits */
+.chip{background:var(--lav-100);color:var(--primary-dark);}
+.badge.normal{background:var(--lav-100);color:var(--primary-dark);}
+.role-tag.cm{background:var(--lav-100);color:var(--primary-dark);}
+.progress-bar{background:#EEE8FB;}
+.progress-bar .fill{background:linear-gradient(90deg,#9474E8,#7C5CD6);}
+.toast{border-radius:12px;background:#2B2341;}
+.toast.success{background:#5B3FB5;}
+.calendar-grid .day{background:#F6F3FC;}
+.list-item:hover{background:var(--lav-50);}
+.login-forgot,.breadcrumb,.upload-progress{color:var(--primary);}
+
+/* Login */
+.login-overlay{background:radial-gradient(800px 420px at 15% 10%,#EDE4FF,rgba(237,228,255,0) 60%),
+  radial-gradient(700px 400px at 90% 90%,#FCE6F5,rgba(252,230,245,0) 60%),#F8F6FD;}
+.login-box{border-radius:22px;box-shadow:0 24px 60px rgba(91,63,181,.18);border:1px solid #EFE9FB;}
+.login-banner{background:linear-gradient(135deg,#6E50CF 0%,#9576EA 55%,#C3A9F7 100%);}
+
+main{max-width:1240px;}
+#cgTable td:nth-child(2){white-space:nowrap;}
+/* CG status pill & cert */
+.cg-status-sel{min-height:34px!important;padding:5px 30px 5px 10px!important;border-radius:999px!important;font-size:12.5px!important;font-weight:700;width:auto!important;cursor:pointer;}
+.cg-status-sel.on{background:#E9F8EF!important;color:#1E7A4B;border-color:#C9ECD7!important;}
+.cg-status-sel.off{background:#FFF0F3!important;color:#C23552;border-color:#FBD7DF!important;}
+.cg-type-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;background:var(--lav-100);color:var(--primary-dark);white-space:nowrap;}
+.cg-type-tag.econ{background:#FFF4E6;color:#A55A12;}
 </style>
 </head>
 <body>
@@ -574,7 +693,7 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
 <header class="app-header">
   <img class="app-logo" id="appHeaderLogo" alt="โลโก้ รพ.สต.บ้านห้วยหลัว">
   <div class="app-header-text">
-    <h1>📋 ระบบการดูแลผู้สูงอายุและผู้ที่มีภาวะพึ่งพิง (LTC)</h1>
+    <h1>ระบบการดูแลผู้สูงอายุและผู้ที่มีภาวะพึ่งพิง (LTC)</h1>
     <p>รพ.สต.บ้านห้วยหลัว <span class="facAddr">ต.ห้วยหลัว อ.บ้านม่วง จ.สกลนคร</span></p>
   </div>
   <div class="app-header-user">
@@ -907,14 +1026,31 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
 <section id="tab-cg" class="tabpanel">
   <div class="card">
     <div class="row" style="justify-content:space-between;">
-      <h3 style="margin:0;">รายชื่อผู้ดูแล (CG)</h3>
+      <h3 style="margin:0;border:none;padding:0;">รายชื่อผู้ดูแล (CG)</h3>
       <div class="row" style="gap:8px;">
         <button class="btn btn-ghost btn-sm" id="viewTransferHistoryBtn">📜 ประวัติการย้าย CG</button>
+        <button class="btn btn-secondary btn-sm" id="cgImportToggleBtn">📥 นำเข้า CG จาก Excel</button>
         <button class="btn btn-primary btn-sm" id="addCgBtn">+ เพิ่ม CG</button>
       </div>
     </div>
-    <table style="margin-top:10px;"><thead><tr><th>รหัส</th><th>ชื่อ</th><th>เลขบัตรประชาชน</th><th>เบอร์โทร</th><th>หมู่</th><th>ผู้สูงอายุ</th><th></th></tr></thead>
+    <div class="stat-grid" id="cgStatusSummary" style="margin-top:14px;"></div>
+    <div class="row" style="margin-top:12px;">
+      <div class="field"><label>ค้นหาชื่อ CG</label><input type="text" id="cgSearch" placeholder="พิมพ์ชื่อหรือรหัส"></div>
+      <div class="field"><label>สถานะ</label><select id="cgStatusFilter"><option value="">ทั้งหมด</option><option value="active">ปฏิบัติงาน</option><option value="inactive">ไม่ได้ปฏิบัติงาน</option></select></div>
+      <div class="field"><label>ประเภท CG</label><select id="cgTypeFilter"><option value="">ทั้งหมด</option></select></div>
+    </div>
+    <div id="cgImportPanel" style="display:none;margin-top:14px;padding:14px;border:1px dashed var(--lav-300);border-radius:14px;background:var(--lav-50);">
+      <p class="muted" style="margin-top:0;">เลือกไฟล์ Excel รายชื่อ CG (ระบบหาแถวหัวตารางให้อัตโนมัติ) — รองรับคอลัมน์: <b>ชื่อ-สกุล, ประเภท CG, สถานะ</b> และ (ถ้ามี) <b>เลขบัตรประชาชน, เบอร์โทร, บ้านเลขที่, หมู่</b> · CG ที่ชื่อตรงกับในระบบแล้วจะ "อัปเดต" ไม่สร้างซ้ำ</p>
+      <div class="row">
+        <div class="field"><label>ไฟล์ Excel</label><input type="file" id="cgImportFile" accept=".xlsx,.xls"></div>
+        <button class="btn btn-secondary" id="cgImportPreviewBtn" style="align-self:flex-end;">📄 อ่านไฟล์และแสดงตัวอย่าง</button>
+      </div>
+      <div id="cgImportPreview" style="margin-top:12px;"></div>
+    </div>
+    <div style="overflow-x:auto;margin-top:10px;">
+    <table style="min-width:860px;"><thead><tr><th>รหัส</th><th>ชื่อ</th><th>ประเภท</th><th>สถานะ</th><th>เลขบัตรประชาชน</th><th>เบอร์โทร</th><th>หมู่</th><th>ผู้สูงอายุ</th><th></th></tr></thead>
     <tbody id="cgTable"></tbody></table>
+    </div>
   </div>
 </section>
 
@@ -976,7 +1112,7 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
 
   <div class="card">
     <h3>📥 นำเข้าข้อมูลผู้สูงอายุจากไฟล์ Excel</h3>
-    <p class="muted">รองรับไฟล์ .xlsx/.xls ที่มีหัวคอลัมน์ทำนองนี้ (ไม่ต้องเรียงลำดับ ไม่ต้องมีครบทุกคอลัมน์): <b>เลขประจำตัวประชาชน, ชื่อสกุล, กลุ่ม ADL (1-4), คะแนน ADL, คะแนน TAI (เช่น B5, C3, I1), เพศอายุ (เช่น "หญิง : 73 ปี"), ที่อยู่/บ้านเลขที่, หมู่, CG รับผิดชอบ, เบอร์โทรศัพท์ญาติ, ชื่ออสม.ใกล้บ้าน, เบอร์โทรศัพท์ อสม.</b> — ระบบจะจับคู่แต่ละแถวกับผู้สูงอายุที่มีอยู่แล้วในระบบโดยใช้ <b>เลขประจำตัวประชาชน</b> เป็นหลัก ถ้าพบว่าตรงกับคนที่มีอยู่แล้วจะ "อัปเดต" ข้อมูลในช่องที่ตรงกัน ถ้าไม่พบจะ "เพิ่มใหม่" ชื่อ CG ในไฟล์จะจับคู่กับ CG ที่มีอยู่แล้วในระบบโดยอัตโนมัติจากนามสกุล ถ้าไฟล์มีคอลัมน์ "กลุ่ม ADL" (ค่า 1-4) จะใช้กลุ่มนั้นโดยตรงทันที ถ้าไม่มีจะคำนวณกลุ่มและจำนวนครั้งที่ต้องเยี่ยม/เดือนจากคะแนน ADL แทนตามตารางด้านบน ส่วนคอลัมน์ "คะแนน TAI" ถ้ามีค่าตรงกับรหัส TAI ที่ระบบรู้จัก (B3-B5, C2-C4, I1-I3) ระบบจะแปลผลเป็นกลุ่มและคำอธิบายให้อัตโนมัติ</p>
+    <p class="muted">รองรับไฟล์ .xlsx/.xls ที่มีหัวคอลัมน์ทำนองนี้ (ไม่ต้องเรียงลำดับ ไม่ต้องมีครบทุกคอลัมน์): <b>เลขประจำตัวประชาชน, ชื่อสกุล, กลุ่ม ADL (1-4), คะแนน ADL, คะแนน TAI (เช่น B5, C3, I1), เพศอายุ (เช่น "หญิง : 73 ปี"), ที่อยู่/บ้านเลขที่, หมู่, CG รับผิดชอบ, เบอร์โทรศัพท์ญาติ, ชื่ออสม.ใกล้บ้าน, เบอร์โทรศัพท์ อสม.</b> — ระบบจะจับคู่แต่ละแถวกับผู้สูงอายุที่มีอยู่แล้วในระบบโดยใช้ <b>เลขประจำตัวประชาชน</b> เป็นหลัก ถ้าพบว่าตรงกับคนที่มีอยู่แล้วจะ "อัปเดต" ข้อมูลในช่องที่ตรงกัน ถ้าไม่พบจะ "เพิ่มใหม่" ชื่อ CG ในไฟล์จะจับคู่กับ CG ที่มีอยู่แล้วในระบบโดยอัตโนมัติจากนามสกุล ถ้าไฟล์มีคอลัมน์ "กลุ่ม ADL" (ค่า 1-4) จะใช้กลุ่มนั้นโดยตรงทันที ถ้าไม่มีจะคำนวณกลุ่มและจำนวนครั้งที่ต้องเยี่ยม/เดือนจากคะแนน ADL แทนตามตารางด้านบน ส่วนคอลัมน์ "คะแนน TAI" ถ้ามีค่าตรงกับรหัส TAI ที่ระบบรู้จัก (B3-B5, C2-C4, I1-I3) ระบบจะแปลผลเป็นกลุ่มและคำอธิบายให้อัตโนมัติ <br><b style="color:var(--primary-dark);">✨ อ่านได้ทุกชีตในไฟล์เดียว (เช่น ชีต กลุ่ม 1–4) และหาแถวหัวตารางให้อัตโนมัติ แม้มีแถวชื่อเรื่องอยู่ด้านบน — คอลัมน์ "ADL" ใช้เป็นคะแนน ADL, คอลัมน์ "กลุ่ม" ใช้เป็นกลุ่ม 1–4 และระบุเพศจากคำนำหน้าชื่อให้อัตโนมัติ</b></p>
     <div class="row">
       <div class="field"><label>เลือกไฟล์ Excel</label><input type="file" id="elderlyImportFile" accept=".xlsx,.xls"></div>
       <button class="btn btn-ghost" id="elderlyImportClearBtn" style="align-self:flex-end;" title="ล้างไฟล์ที่เลือก">🗑 ล้างไฟล์</button>
@@ -1264,7 +1400,7 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px;">
       <!-- Full backup -->
-      <div style="background:linear-gradient(135deg,#0F5590,#43C1F1);border-radius:14px;padding:16px;color:#fff;">
+      <div style="background:linear-gradient(135deg,#5B3FB5,#A58BF0);border-radius:14px;padding:16px;color:#fff;">
         <div style="font-size:22px;margin-bottom:6px;">💾</div>
         <div style="font-weight:800;font-size:14px;">สำรองข้อมูลทั้งระบบ</div>
         <div style="font-size:11.5px;opacity:.9;margin:4px 0 10px;">ดาวน์โหลด JSON ทุก Collection</div>
@@ -1292,7 +1428,7 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
       <button class="btn btn-secondary btn-sm" id="diagDataBtn">📊 สถิติข้อมูลในระบบ</button>
       <button class="btn btn-secondary btn-sm" id="diagClearCacheBtn">🗑 ล้าง localStorage</button>
     </div>
-    <div id="diagResult" style="display:none;background:#F4F8FF;border:1px solid #D0E4F7;border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.9;"></div>
+    <div id="diagResult" style="display:none;background:#F7F3FF;border:1px solid #D0E4F7;border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.9;"></div>
 
     <div class="upload-progress" id="backupProgress" style="margin-top:8px;"></div>
   </div>
@@ -1313,6 +1449,15 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
       <select id="cgMoo"><option value="">-- เลือกหมู่ --</option></select>
     </div>
   </div>
+  <div class="row" style="margin-top:8px;">
+    <div class="field"><label>ประเภท CG</label>
+      <select id="cgType"><option value="CG รพ.สต.">CG รพ.สต.</option><option value="CG กระตุ้นเศรษฐกิจ">CG กระตุ้นเศรษฐกิจ</option><option value="CG อปท./อื่น ๆ">CG อปท./อื่น ๆ</option></select>
+    </div>
+    <div class="field"><label>สถานะการปฏิบัติงาน</label>
+      <select id="cgWorkStatus"><option value="active">ปฏิบัติงาน</option><option value="inactive">ไม่ได้ปฏิบัติงาน</option></select>
+    </div>
+  </div>
+  <div class="field" style="margin-top:8px;"><label>หมายเหตุสถานะ (ถ้ามี)</label><input type="text" id="cgStatusNote" placeholder="เช่น ลาออก, ย้ายที่อยู่, พักงานชั่วคราว"></div>
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('cgModal')">ยกเลิก</button><button class="btn btn-primary" id="cgSaveBtn">บันทึก</button></div>
 </div></div>
 
@@ -1452,7 +1597,7 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
 
   <div style="margin-top:14px;padding:12px;border:1px solid var(--border);border-radius:10px;background:#FAFDFF;">
     <label style="font-weight:700;font-size:13.5px;color:var(--primary-dark);">แบบประเมิน TAI (Typology of the Aged with Illustration)</label>
-    <div id="taiCurrentSummaryBox" style="margin:8px 0;padding:10px 12px;border-radius:8px;background:#EAF6FC;border:1px solid #B9E1F5;font-size:13.5px;font-weight:700;color:#0F5590;"></div>
+    <div id="taiCurrentSummaryBox" style="margin:8px 0;padding:10px 12px;border-radius:8px;background:#F7F4FE;border:1px solid #DCD0FA;font-size:13.5px;font-weight:700;color:#5B3FB5;"></div>
     <p class="muted" style="font-size:11.5px;margin-top:2px;">ประเมินตามผังการตัดสินใจ TAI ฉบับทางการ (แบ่งเป็นกลุ่ม Border/Confuse/Immobile) คลิกเลือกทีละขั้นตอนตามที่ระบบถามไปเรื่อยๆ ไม่ต้องพิมพ์รหัสเอง ระบบจะสรุปผลเป็นรหัส TAI ให้อัตโนมัติเมื่อเลือกครบ (หรือหากมีผลจากภายนอกอยู่แล้ว สามารถนำเข้าผ่านไฟล์ Excel ได้)</p>
     <div id="taiDomainsContainer"></div>
     <div class="info-box" id="taiResultBox" style="margin-top:10px;padding:10px 12px;border-radius:8px;background:#fff;border:1px solid var(--border);font-size:13px;">กรุณาเลือกให้ครบทุกข้อเพื่อสรุปผล TAI</div>
@@ -1849,6 +1994,24 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('disposalCancelModal')">ยกเลิก</button></div>
 </div></div>
 
+<div class="modal-overlay" id="cgCertModal"><div class="modal-box" style="max-width:820px;">
+  <div class="row" style="justify-content:space-between;margin-bottom:10px;">
+    <h3 style="margin:0;" id="cgCertTitle">🎓 สำเนาใบ Certificate</h3>
+    <div class="row" style="gap:6px;">
+      <button class="btn btn-secondary btn-sm" id="cgCertPrintBtn">🖨 พิมพ์</button>
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('cgCertModal')">ปิด</button>
+    </div>
+  </div>
+  <div id="cgCertUploadBox" style="padding:12px;border-radius:14px;background:var(--lav-50);border:1px solid var(--border);margin-bottom:12px;">
+    <div class="row">
+      <div class="field"><label>แนบสำเนาใบ Certificate ฉบับจริง (รูปภาพ หรือ PDF — เลือกได้หลายไฟล์)</label><input type="file" id="cgCertFile" accept="image/*,.pdf,application/pdf" multiple></div>
+      <button class="btn btn-primary" id="cgCertUploadBtn" style="align-self:flex-end;">⬆️ อัปโหลด</button>
+    </div>
+    <span id="cgCertProgress" class="muted"></span>
+  </div>
+  <div id="cgCertList"></div>
+</div></div>
+
 <div class="modal-overlay" id="confirmModal"><div class="modal-box">
   <h3 id="confirmTitle">ยืนยันการทำรายการ</h3>
   <p id="confirmMessage"></p>
@@ -1866,17 +2029,17 @@ header.app-header .app-header-user .btn:hover{background:rgba(255,255,255,.3);}
 /* ---------- หน้าจอแจ้งให้ตั้งค่าฐานข้อมูล (แสดงเมื่อยังไม่ได้ใส่ค่า Firebase ของ รพ.สต.บ้านห้วยหลัว) ---------- */
 function showFirebaseSetupScreen(reason){
   const d = document.createElement('div');
-  d.style.cssText = 'position:fixed;inset:0;z-index:99999;background:#EAF6FC;overflow:auto;padding:18px;font-family:Sarabun,sans-serif;color:#1B2E3B;';
+  d.style.cssText = 'position:fixed;inset:0;z-index:99999;background:#F7F4FE;overflow:auto;padding:18px;font-family:Sarabun,sans-serif;color:#2B2341;';
   d.innerHTML = `
-  <div style="max-width:760px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 2px 14px rgba(21,113,186,.18);padding:22px 24px;line-height:1.75;">
-    <h2 style="margin:0 0 6px;color:#0F5590;">🏥 ตั้งค่าฐานข้อมูลของ รพ.สต.บ้านห้วยหลัว (ทำครั้งเดียว)</h2>
+  <div style="max-width:760px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 2px 14px rgba(124,92,214,.18);padding:22px 24px;line-height:1.75;">
+    <h2 style="margin:0 0 6px;color:#5B3FB5;">🏥 ตั้งค่าฐานข้อมูลของ รพ.สต.บ้านห้วยหลัว (ทำครั้งเดียว)</h2>
     <p style="margin:0 0 12px;color:#D8503A;font-weight:700;">${reason}</p>
     <p>ระบบนี้ถูกตั้งให้ใช้ฐานข้อมูล <b>ของห้วยหลัวเท่านั้น</b> จึงต้องสร้างโปรเจกต์ Firebase ใหม่ของหน่วยงานเอง (ฟรี) แล้วนำค่าไปใส่ในไฟล์นี้:</p>
     <ol style="padding-left:20px;">
       <li>เข้า <b>console.firebase.google.com</b> → <b>Add project</b> → ตั้งชื่อ เช่น <code>smart-ltc-huailua</code></li>
       <li>เมนู <b>Build → Realtime Database → Create Database</b> → เลือก Location <b>Singapore (asia-southeast1)</b> → เริ่มแบบ <b>Test mode</b></li>
       <li>แท็บ <b>Rules</b> วางข้อความนี้แล้วกด Publish:<br>
-        <code style="display:block;background:#F4F8FF;padding:8px;border-radius:8px;margin:4px 0;">{ "rules": { "huailua_ltc": { ".read": true, ".write": true } } }</code></li>
+        <code style="display:block;background:#F7F3FF;padding:8px;border-radius:8px;margin:4px 0;">{ "rules": { "huailua_ltc": { ".read": true, ".write": true } } }</code></li>
       <li><b>Project settings (รูปเฟือง) → General → Your apps → ไอคอน &lt;/&gt; (Web)</b> → ลงทะเบียนแอป → คัดลอกค่า <code>firebaseConfig</code></li>
       <li>เปิดไฟล์ HTML นี้ด้วย Notepad → ค้นหา <code>FIREBASE_CONFIG</code> → แทนที่ค่า <code>PASTE_...</code> ด้วยค่าที่คัดลอกมา → บันทึก → เปิดไฟล์ใหม่</li>
       <li>(ถ้าต้องการอัปโหลดรูปถ่ายการเยี่ยม) สมัคร <b>imgbb.com</b> → ขอ API key → ใส่ที่ <code>IMGBB_API_KEY</code></li>
@@ -2327,7 +2490,8 @@ const MUEANG_SAKON_SUBDISTRICTS = [
 /* =============================================================
    FIREBASE LISTENERS
 ============================================================= */
-db.ref('cgs').on('value', snap=>{ STATE.cgs = snap.val()||{}; onDataChange(); });
+db.ref('cgs').on('value', snap=>{ STATE.cgs = snap.val()||{}; onDataChange();
+  const _cm = document.getElementById('cgCertModal'); if(_cm && _cm.classList.contains('show') && typeof renderCgCertModal==='function') renderCgCertModal(); });
 db.ref('elderly').on('value', snap=>{ STATE.elderly = snap.val()||{}; onDataChange(); });
 db.ref('visits').on('value', snap=>{ STATE.visits = snap.val()||{}; onDataChange(); });
 db.ref('equipment').on('value', snap=>{ STATE.equipment = snap.val()||{}; onDataChange(); });
@@ -2856,7 +3020,8 @@ document.getElementById('cpSaveBtn').addEventListener('click', ()=>{
    COMMON SELECT FILLERS
 ============================================================= */
 function renderCgSelects(){
-  const opts = Object.keys(STATE.cgs).sort().map(code=>`<option value="${code}">${code} - ${STATE.cgs[code].name}</option>`).join('');
+  const _cgSfx = code => STATE.cgs[code].workStatus==='inactive' ? ' (ไม่ได้ปฏิบัติงาน)' : '';
+  const opts = Object.keys(STATE.cgs).sort().map(code=>`<option value="${code}">${code} - ${STATE.cgs[code].name}${_cgSfx(code)}</option>`).join('');
   const optsNoCode = Object.keys(STATE.cgs).sort().map(code=>`<option value="${code}">${STATE.cgs[code].name}</option>`).join('');
   ['elderlyCg','pdfCgFilter','filterElderlyCg','elderlyReportCgFilter','recManageCg','allElderlyReportCgFilter','indivReportCgFilter'].forEach(id=>{
     const el = document.getElementById(id);
@@ -3223,7 +3388,7 @@ function renderEqDashboardHome(){
         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 5px 14px rgba(0,0,0,.14)'"
         onmouseout="this.style.transform='';this.style.boxShadow='0 2px 6px rgba(0,0,0,.07)'">
         <div style="font-size:26px;margin-bottom:4px;">${getItemEmoji(d.itemType)}</div>
-        <div style="font-size:11.5px;font-weight:700;color:#1B2E3B;line-height:1.3;margin-bottom:6px;">${d.itemType}</div>
+        <div style="font-size:11.5px;font-weight:700;color:#2B2341;line-height:1.3;margin-bottom:6px;">${d.itemType}</div>
         <div style="font-size:22px;font-weight:900;color:${statusColor};line-height:1;">${remain}</div>
         <div style="font-size:10.5px;color:#6b7d8a;margin-top:2px;">/ ${total} ${d.unit||'ชิ้น'}</div>
         ${borrowed > 0 ? `<div style="font-size:10px;background:#FFF8E1;color:#8A6100;border-radius:20px;padding:2px 8px;margin-top:5px;display:inline-block;">🔄 ยืมออก ${borrowed}</div>` : ''}
@@ -3806,7 +3971,7 @@ document.getElementById('recRehabOtherCb').addEventListener('change', function()
     tag.className = 'rec-support-item';
     tag.dataset.category = cat;
     tag.dataset.itemType = item;
-    tag.style.cssText = 'display:inline-flex;align-items:center;gap:8px;background:#EAF6FC;border:1px solid #B9E1F5;border-radius:20px;padding:4px 12px;font-size:13px;';
+    tag.style.cssText = 'display:inline-flex;align-items:center;gap:8px;background:#F7F4FE;border:1px solid #DCD0FA;border-radius:20px;padding:4px 12px;font-size:13px;';
     tag.innerHTML = `<span>${catLabel}: <b>${item}</b></span><button type="button" style="border:none;background:none;cursor:pointer;color:#999;font-size:14px;" onclick="this.parentElement.remove();updateRecSupportAlert();">✕</button>`;
     list.appendChild(tag);
     updateRecSupportAlert();
@@ -3966,22 +4131,305 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
 /* =============================================================
    CG MANAGEMENT
 ============================================================= */
+const CG_STATUS_LABELS = { active:'ปฏิบัติงาน', inactive:'ไม่ได้ปฏิบัติงาน' };
+function cgWorkStatus(cg){ return (cg && cg.workStatus === 'inactive') ? 'inactive' : 'active'; }
+function normalizeCgType(t){
+  const v = String(t||'').replace(/[ \s]+/g,' ').trim().replace(/กระตุ้น\s*เศรษฐกิจ/,'กระตุ้นเศรษฐกิจ');
+  return v;
+}
 function renderCgTable(){
-  const rows = Object.keys(STATE.cgs).sort().map(code=>{
+  const all = Object.keys(STATE.cgs).sort();
+  /* สรุปจำนวนตามสถานะ */
+  const nActive = all.filter(c=>cgWorkStatus(STATE.cgs[c])==='active').length;
+  const sumEl = document.getElementById('cgStatusSummary');
+  if(sumEl){
+    sumEl.innerHTML = `
+      <div class="stat stat-info"><b>${all.length}</b><span>CG ทั้งหมด</span></div>
+      <div class="stat stat-success"><b>${nActive}</b><span>ปฏิบัติงาน</span></div>
+      <div class="stat stat-danger"><b>${all.length-nActive}</b><span>ไม่ได้ปฏิบัติงาน</span></div>`;
+  }
+  /* ตัวเลือกประเภท CG ในตัวกรอง */
+  const typeSel = document.getElementById('cgTypeFilter');
+  if(typeSel){
+    const prev = typeSel.value;
+    const types = Array.from(new Set(all.map(c=>normalizeCgType(STATE.cgs[c].cgType)).filter(Boolean))).sort();
+    typeSel.innerHTML = '<option value="">ทั้งหมด</option>' + types.map(t=>`<option value="${escHtml(t)}">${escHtml(t)}</option>`).join('');
+    if(types.includes(prev)) typeSel.value = prev;
+  }
+  const q = (document.getElementById('cgSearch')?.value||'').trim().replace(/\s+/g,'');
+  const fStatus = document.getElementById('cgStatusFilter')?.value || '';
+  const fType = document.getElementById('cgTypeFilter')?.value || '';
+  const rows = all.filter(code=>{
+    const cg = STATE.cgs[code];
+    if(fStatus && cgWorkStatus(cg)!==fStatus) return false;
+    if(fType && normalizeCgType(cg.cgType)!==fType) return false;
+    if(q && !((cg.name||'').replace(/\s+/g,'').includes(q) || code.includes(q.toUpperCase()))) return false;
+    return true;
+  }).map(code=>{
     const cg = STATE.cgs[code];
     const count = Object.values(STATE.elderly).filter(e=>e.cgCode===code).length;
+    const st = cgWorkStatus(cg);
+    const type = normalizeCgType(cg.cgType);
+    const typeTag = type ? `<span class="cg-type-tag ${type.includes('เศรษฐกิจ')?'econ':''}">${escHtml(type)}</span>` : '<span class="muted">-</span>';
+    const note = cg.statusNote ? `<div class="muted" style="font-size:11px;margin-top:3px;">${escHtml(cg.statusNote)}</div>` : '';
     return `<tr>
-      <td>${code}</td><td>${cg.name}</td><td>${cg.idCard||'-'}</td><td>${cg.phone||'-'}</td><td>${cg.moo||'-'}</td><td>${count}</td>
+      <td>${code}</td><td style="font-weight:600;">${escHtml(cg.name||'')}</td><td>${typeTag}</td>
+      <td><select class="cg-status-sel ${st==='active'?'on':'off'}" onchange="setCgWorkStatus('${code}', this.value)" title="เปลี่ยนสถานะได้ทันที">
+            <option value="active" ${st==='active'?'selected':''}>● ปฏิบัติงาน</option>
+            <option value="inactive" ${st==='inactive'?'selected':''}>● ไม่ได้ปฏิบัติงาน</option>
+          </select>${note}</td>
+      <td>${cg.idCard||'-'}</td><td>${cg.phone||'-'}</td><td>${cg.moo||'-'}</td><td>${count}</td>
       <td style="white-space:nowrap;">
-        <button class="btn btn-ghost btn-sm" onclick="openEditCg('${code}')">✏️</button>
+        <button class="btn btn-ghost btn-sm" onclick="openEditCg('${code}')" title="แก้ไขข้อมูล/สถานะ">✏️</button>
+        <button class="btn ${cgCertList(cg).length?'btn-secondary':'btn-ghost'} btn-sm" onclick="openCgCertificate('${code}')" title="สำเนาใบ Certificate รายบุคคล">🎓 ${cgCertList(cg).length?`Certificate (${cgCertList(cg).length})`:'แนบ Certificate'}</button>
         <button class="btn btn-ghost btn-sm" onclick="openVisitPlan('${code}')">📅 แผนการเยี่ยม</button>
         <button class="btn btn-ghost btn-sm" onclick="openTransferElderlyBatch('${code}')">🔄 ย้ายผู้สูงอายุ</button>
         <button class="btn btn-danger btn-sm" onclick="deleteCg('${code}')">🗑</button>
       </td>
     </tr>`;
   }).join('');
-  document.getElementById('cgTable').innerHTML = rows || '<tr><td colspan="7" class="muted">ยังไม่มีข้อมูล</td></tr>';
+  document.getElementById('cgTable').innerHTML = rows || `<tr><td colspan="9" class="muted">${all.length?'ไม่พบ CG ตามเงื่อนไขที่เลือก':'ยังไม่มีข้อมูล'}</td></tr>`;
 }
+function setCgWorkStatus(code, val){
+  if(blockIfReadOnly()){ renderCgTable(); return; }
+  const cg = STATE.cgs[code]; if(!cg) return;
+  db.ref('cgs/'+code).update({
+    workStatus: val==='inactive' ? 'inactive' : 'active',
+    workStatusUpdatedAt: Date.now(),
+    workStatusUpdatedBy: CURRENT_USER ? CURRENT_USER.displayName : '-'
+  }).then(()=>toast(`เปลี่ยนสถานะ ${cg.name} เป็น "${CG_STATUS_LABELS[val]}" แล้ว`,'success'));
+}
+['cgSearch','cgStatusFilter','cgTypeFilter'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener(id==='cgSearch'?'input':'change', renderCgTable);
+});
+
+/* =============================================================
+   นำเข้ารายชื่อ CG จากไฟล์ Excel
+============================================================= */
+let cgImportRows = [];
+function cgNameKey(n){
+  return String(n||'').replace(/[ \s]+/g,'').replace(/^(นางสาว|น\.ส\.|นาง|นาย)/,'');
+}
+function parseCgStatusText(v){
+  const t = String(v||'').replace(/\s+/g,'');
+  if(!t) return '';
+  if(/ไม่|ลาออก|พ้น|ยุติ|หยุด|inactive/i.test(t)) return 'inactive';
+  return 'active';
+}
+document.getElementById('cgImportToggleBtn').addEventListener('click', ()=>{
+  const el = document.getElementById('cgImportPanel');
+  el.style.display = el.style.display==='none' ? 'block' : 'none';
+});
+document.getElementById('cgImportPreviewBtn').addEventListener('click', ()=>{
+  if(blockIfReadOnly()) return;
+  const file = document.getElementById('cgImportFile').files[0];
+  if(!file){ toast('กรุณาเลือกไฟล์ Excel ก่อน','error'); return; }
+  const reader = new FileReader();
+  reader.onload = (e)=>{
+    try{
+      const wb = XLSX.read(new Uint8Array(e.target.result), { type:'array' });
+      const rows = readAllSheetsWithHeader(wb, ['ชื่อ-สกุล','ชื่อสกุล','ชื่อ']);
+      if(!rows.length){ toast('ไม่พบข้อมูลในไฟล์','error'); return; }
+      const headers = Array.from(new Set(rows.flatMap(r=>Object.keys(r))));
+      const cName  = findColumnKey(headers, ['ชื่อ-สกุล','ชื่อสกุล','ชื่อ']);
+      const cType  = findColumnKey(headers, ['ประเภทcg','ประเภท']);
+      const cStat  = findColumnKey(headers, ['สถานะ']);
+      const cId    = findColumnKey(headers, ['เลขประจำตัวประชาชน','เลขบัตรประชาชน','เลขบัตร']);
+      const cPhone = findColumnKey(headers, ['เบอร์โทร','โทรศัพท์']);
+      const cHouse = findColumnKey(headers, ['บ้านเลขที่','ที่อยู่']);
+      const cMoo   = findColumnKey(headers, ['หมู่']);
+      if(!cName){ toast('ไม่พบคอลัมน์ชื่อ CG ในไฟล์','error'); return; }
+      const existingByKey = {};
+      Object.entries(STATE.cgs).forEach(([code,cg])=>{ existingByKey[cgNameKey(cg.name)] = code; });
+      const seen = new Set();
+      cgImportRows = rows.map(r=>{
+        const name = cleanPersonName(r[cName]);
+        if(!name || name===String(cName).trim()) return null;
+        const key = cgNameKey(name);
+        if(seen.has(key)) return null; seen.add(key);
+        return {
+          name, key, existingCode: existingByKey[key] || null,
+          cgType: cType ? normalizeCgType(r[cType]) : '',
+          workStatus: cStat ? parseCgStatusText(r[cStat]) : '',
+          idCard: cId ? normalizeIdCard(r[cId]) : '',
+          phone: cPhone ? String(r[cPhone]||'').trim() : '',
+          houseNo: cHouse ? String(r[cHouse]||'').trim() : '',
+          moo: cMoo ? String(r[cMoo]||'').trim().replace(/^\s*หมู่ที่?\s*/,'') : ''
+        };
+      }).filter(Boolean);
+      const nNew = cgImportRows.filter(r=>!r.existingCode).length;
+      const nUpd = cgImportRows.length - nNew;
+      document.getElementById('cgImportPreview').innerHTML = `
+        <p style="font-weight:600;">พบ CG ${cgImportRows.length} คน — <span style="color:#1E7A4B;">➕ เพิ่มใหม่ ${nNew}</span> · <span style="color:var(--primary);">🔄 อัปเดต ${nUpd}</span></p>
+        <div style="overflow-x:auto;max-height:320px;overflow-y:auto;"><table><thead><tr><th>ชื่อ</th><th>ประเภท</th><th>สถานะ</th><th>การดำเนินการ</th></tr></thead><tbody>
+        ${cgImportRows.map(r=>`<tr><td>${escHtml(r.name)}</td><td>${escHtml(r.cgType||'-')}</td>
+          <td>${r.workStatus?`<span class="cg-type-tag" style="background:${r.workStatus==='active'?'#E9F8EF':'#FFF0F3'};color:${r.workStatus==='active'?'#1E7A4B':'#C23552'};">${CG_STATUS_LABELS[r.workStatus]}</span>`:'-'}</td>
+          <td>${r.existingCode?`🔄 อัปเดต (${r.existingCode})`:'➕ เพิ่มใหม่'}</td></tr>`).join('')}
+        </tbody></table></div>
+        <button class="btn btn-primary" id="cgImportConfirmBtn" style="margin-top:10px;">✅ ยืนยันนำเข้า ${cgImportRows.length} คน</button>`;
+      document.getElementById('cgImportConfirmBtn').addEventListener('click', commitCgImport);
+    }catch(err){ console.error(err); toast('อ่านไฟล์ไม่สำเร็จ: '+err.message,'error'); }
+  };
+  reader.readAsArrayBuffer(file);
+});
+function commitCgImport(){
+  if(blockIfReadOnly()) return;
+  const updates = {}; const now = Date.now();
+  const tmp = Object.assign({}, STATE.cgs);
+  let nNew=0, nUpd=0;
+  cgImportRows.forEach(r=>{
+    if(r.existingCode){
+      const base = 'cgs/'+r.existingCode+'/';
+      updates[base+'name'] = r.name;
+      if(r.cgType) updates[base+'cgType'] = r.cgType;
+      if(r.workStatus){ updates[base+'workStatus'] = r.workStatus; updates[base+'workStatusUpdatedAt'] = now; }
+      if(r.idCard) updates[base+'idCard'] = r.idCard;
+      if(r.phone) updates[base+'phone'] = r.phone;
+      if(r.houseNo) updates[base+'houseNo'] = r.houseNo;
+      if(r.moo) updates[base+'moo'] = r.moo;
+      nUpd++;
+    } else {
+      const code = nextCode(tmp, 'CG', 3); tmp[code] = { name:r.name };
+      updates['cgs/'+code] = {
+        name:r.name, idCard:r.idCard||'', phone:r.phone||'', houseNo:r.houseNo||'', moo:r.moo||'',
+        cgType:r.cgType||'', workStatus:r.workStatus||'active', workStatusUpdatedAt:now,
+        status:'active', createdAt:now
+      };
+      nNew++;
+    }
+  });
+  db.ref().update(updates).then(()=>{
+    toast(`นำเข้า CG สำเร็จ: เพิ่มใหม่ ${nNew} คน, อัปเดต ${nUpd} คน`,'success');
+    cgImportRows = [];
+    document.getElementById('cgImportPreview').innerHTML = '';
+    document.getElementById('cgImportFile').value = '';
+    document.getElementById('cgImportPanel').style.display = 'none';
+  }).catch(err=>toast('บันทึกไม่สำเร็จ: '+err.message,'error'));
+}
+
+/* =============================================================
+   สำเนาใบ Certificate ของ CG (แนบไฟล์ใบจริงรายบุคคล — ไม่สร้างแบบฟอร์มใหม่)
+   เก็บรูปไว้ที่ ImgBB และเก็บลิงก์ไว้ที่ cgs/{code}/certFiles/{id}
+============================================================= */
+let cgCertCurrentCode = '';
+function cgCertList(cg){
+  return Object.entries((cg && cg.certFiles) || {}).map(([id,f])=>Object.assign({id},f))
+    .sort((x,y)=>(x.uploadedAt||0)-(y.uploadedAt||0) || (x.page||0)-(y.page||0));
+}
+function openCgCertificate(code){
+  cgCertCurrentCode = code;
+  renderCgCertModal();
+  openModal('cgCertModal');
+}
+function renderCgCertModal(){
+  const code = cgCertCurrentCode, cg = STATE.cgs[code];
+  if(!cg) return;
+  document.getElementById('cgCertTitle').textContent = `🎓 สำเนาใบ Certificate — ${cg.name} (${code})`;
+  const files = cgCertList(cg);
+  const ro = isReadOnlyUser();
+  document.getElementById('cgCertUploadBox').style.display = ro ? 'none' : 'block';
+  document.getElementById('cgCertPrintBtn').style.display = files.length ? '' : 'none';
+  document.getElementById('cgCertList').innerHTML = files.length ? files.map((f,i)=>`
+    <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;">
+      <a href="${f.url}" target="_blank" rel="noopener"><img src="${f.url}" alt="Certificate ${i+1}" style="display:block;width:100%;max-height:70vh;object-fit:contain;background:#F6F3FC;"></a>
+      <div class="row" style="justify-content:space-between;padding:8px 12px;gap:6px;">
+        <span class="muted">หน้า ${i+1}/${files.length}${f.name?` · ${escHtml(f.name)}`:''}${f.uploadedAt?` · แนบเมื่อ ${formatThaiDate(new Date(f.uploadedAt).toISOString().slice(0,10))}`:''}</span>
+        <span class="row" style="gap:6px;">
+          <a class="btn btn-ghost btn-sm" href="${f.url}" target="_blank" rel="noopener" style="text-decoration:none;">🔍 เปิดภาพเต็ม / ดาวน์โหลด</a>
+          ${ro?'':`<button class="btn btn-danger btn-sm" onclick="deleteCgCertFile('${f.id}')">🗑 ลบ</button>`}
+        </span>
+      </div>
+    </div>`).join('')
+    : `<div style="text-align:center;padding:28px 12px;border:1px dashed var(--lav-300);border-radius:14px;background:var(--lav-50);" class="muted">ยังไม่ได้แนบสำเนาใบ Certificate ของ CG คนนี้</div>`;
+}
+
+/* แปลง PDF เป็นรูปทีละหน้า (โหลด pdf.js เฉพาะตอนใช้งาน) */
+let _pdfjsLoading = null;
+function loadPdfJs(){
+  if(window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+  if(_pdfjsLoading) return _pdfjsLoading;
+  _pdfjsLoading = new Promise((res,rej)=>{
+    const sc = document.createElement('script');
+    sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    sc.onload = ()=>{ window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; res(window.pdfjsLib); };
+    sc.onerror = ()=>{ _pdfjsLoading = null; rej(new Error('โหลดตัวอ่าน PDF ไม่สำเร็จ')); };
+    document.head.appendChild(sc);
+  });
+  return _pdfjsLoading;
+}
+async function pdfFileToImages(file){
+  const lib = await loadPdfJs();
+  const pdf = await lib.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
+  const out = [];
+  for(let n=1;n<=Math.min(pdf.numPages,10);n++){
+    const page = await pdf.getPage(n);
+    const vp0 = page.getViewport({ scale:1 });
+    const vp = page.getViewport({ scale: Math.min(3, 2000/Math.max(vp0.width,vp0.height)) });
+    const c = document.createElement('canvas'); c.width = vp.width; c.height = vp.height;
+    const ctx = c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+    await page.render({ canvasContext: ctx, viewport: vp }).promise;
+    out.push(c.toDataURL('image/jpeg',0.9));
+  }
+  return out;
+}
+document.getElementById('cgCertUploadBtn').addEventListener('click', async ()=>{
+  if(blockIfReadOnly()) return;
+  const code = cgCertCurrentCode;
+  const input = document.getElementById('cgCertFile');
+  const files = Array.from(input.files||[]);
+  if(!files.length){ toast('กรุณาเลือกไฟล์สำเนาใบ Certificate (รูปภาพ หรือ PDF)','error'); return; }
+  const btn = document.getElementById('cgCertUploadBtn');
+  const prog = document.getElementById('cgCertProgress');
+  btn.disabled = true;
+  try{
+    const updates = {}; let n = 0; const now = Date.now();
+    for(const file of files){
+      let dataUrls;
+      if(file.type === 'application/pdf' || /\.pdf$/i.test(file.name)){
+        prog.textContent = `กำลังแปลง PDF: ${file.name}`;
+        dataUrls = await pdfFileToImages(file);
+      } else {
+        dataUrls = [await resizeImage(file, 2200, 0.9)];
+      }
+      for(let i=0;i<dataUrls.length;i++){
+        n++; prog.textContent = `กำลังอัปโหลดหน้า ${n}...`;
+        const url = await uploadToImgBB(dataUrls[i]);
+        const id = 'CF' + now + '_' + n;
+        updates['cgs/'+code+'/certFiles/'+id] = { url, name: file.name + (dataUrls.length>1?` (หน้า ${i+1})`:''), page:n, uploadedAt: now + n, uploadedBy: CURRENT_USER ? CURRENT_USER.displayName : '-' };
+      }
+    }
+    await db.ref().update(updates);
+    input.value = '';
+    toast(`แนบสำเนาใบ Certificate สำเร็จ ${n} หน้า`,'success');
+  }catch(err){
+    console.error(err); toast('อัปโหลดไม่สำเร็จ: '+err.message,'error');
+  }finally{ btn.disabled = false; prog.textContent = ''; }
+});
+function deleteCgCertFile(fileId){
+  if(blockIfReadOnly()) return;
+  const code = cgCertCurrentCode;
+  showConfirm('ลบสำเนาใบ Certificate หน้านี้?', (STATE.cgs[code]||{}).name || code, ()=>{
+    db.ref('cgs/'+code+'/certFiles/'+fileId).remove().then(()=>toast('ลบสำเร็จ','success'));
+  });
+}
+document.getElementById('cgCertPrintBtn').addEventListener('click', ()=>{
+  const files = cgCertList(STATE.cgs[cgCertCurrentCode]);
+  if(!files.length) return;
+  const ifr = document.createElement('iframe');
+  ifr.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;';
+  document.body.appendChild(ifr);
+  const d = ifr.contentWindow.document;
+  d.open();
+  d.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Certificate</title>
+    <style>@page{margin:8mm;}html,body{margin:0;}img{display:block;max-width:100%;max-height:98vh;margin:0 auto;page-break-after:always;}</style></head>
+    <body>${files.map(f=>`<img src="${f.url}">`).join('')}</body></html>`);
+  d.close();
+  const imgs = Array.from(d.images);
+  Promise.all(imgs.map(im=>im.complete ? 0 : new Promise(r=>{ im.onload = im.onerror = r; }))).then(()=>{
+    ifr.contentWindow.focus(); ifr.contentWindow.print(); setTimeout(()=>ifr.remove(), 2000);
+  });
+});
 
 /* ---- ย้ายผู้สูงอายุในความรับผิดชอบจาก CG หนึ่งไปอีก CG หนึ่ง ---- */
 /* ---- ย้าย CG ผู้รับผิดชอบของผู้สูงอายุแต่ละคน (ย้ายมาไว้ในฟังก์ชัน "จัดการผู้สูงอายุ") ---- */
@@ -4275,7 +4723,7 @@ function buildVisitPlanPdfPageHTML(rowsChunk, cgName, monthLabel, yBE, pageNo, t
     </tr>`).join('');
   return `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">แผนการเยี่ยมบ้านผู้สูงอายุ ประจำเดือน ${monthLabel} ${yBE}</div>
@@ -4286,7 +4734,7 @@ function buildVisitPlanPdfPageHTML(rowsChunk, cgName, monthLabel, yBE, pageNo, t
     <div style="padding:14px 20px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:11px;">
         <thead>
-          <tr style="background:#EAF6FC;color:#0F5590;">
+          <tr style="background:#F7F4FE;color:#5B3FB5;">
             <th style="padding:5px 6px;border:1px solid #ddd;">ลำดับ</th>
             <th style="padding:5px 6px;border:1px solid #ddd;">ชื่อ-สกุล</th>
             <th style="padding:5px 6px;border:1px solid #ddd;">อายุ</th>
@@ -4394,7 +4842,7 @@ function buildVisitRegistryPageHTML(cgName, dateIso, rowCount, monthLabel, yBE){
   }
   return `
   <div style="width:754px;min-height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">ทะเบียนควบคุมการเยี่ยมบ้านผู้สูงอายุที่มีภาวะพึ่งพิง</div>
@@ -4402,14 +4850,14 @@ function buildVisitRegistryPageHTML(cgName, dateIso, rowCount, monthLabel, yBE){
       </div>
       <div style="width:58px;flex-shrink:0;"></div>
     </div>
-    <div style="padding:22px 30px;flex:1;font-size:13px;color:#1B2E3B;">
+    <div style="padding:22px 30px;flex:1;font-size:13px;color:#2B2341;">
       <div style="display:flex;justify-content:space-between;margin-bottom:16px;">
         <div>CG ผู้เยี่ยม: <b>${cgName}</b></div>
         <div>วันที่เยี่ยม: <b>${formatThaiDate(dateIso)}</b> (${monthLabel} ${yBE})</div>
       </div>
-      <p style="font-size:11.5px;color:#5B7A8C;margin:0 0 10px;">ใช้สำหรับให้ญาติ/ผู้รับการเยี่ยมลงลายมือชื่อรับรองว่าได้รับการเยี่ยมบ้านจาก CG จริงตามแผนของวันดังกล่าว</p>
+      <p style="font-size:11.5px;color:#6F6688;margin:0 0 10px;">ใช้สำหรับให้ญาติ/ผู้รับการเยี่ยมลงลายมือชื่อรับรองว่าได้รับการเยี่ยมบ้านจาก CG จริงตามแผนของวันดังกล่าว</p>
       <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
-        <thead><tr style="background:#EAF6FC;color:#0F5590;">
+        <thead><tr style="background:#F7F4FE;color:#5B3FB5;">
           <th style="padding:8px;border:1px solid #999;width:45px;">ลำดับ</th>
           <th style="padding:8px;border:1px solid #999;">ลายมือชื่อญาติ/ผู้รับการเยี่ยม (รับรองว่าได้รับการเยี่ยมจริง)</th>
           <th style="padding:8px;border:1px solid #999;">เวลา</th>
@@ -4532,6 +4980,9 @@ document.getElementById('addCgBtn').addEventListener('click', ()=>{
   document.getElementById('cgPhone').value = '';
   document.getElementById('cgHouseNo').value = '';
   document.getElementById('cgMoo').value = '';
+  document.getElementById('cgType').value = 'CG รพ.สต.';
+  document.getElementById('cgWorkStatus').value = 'active';
+  document.getElementById('cgStatusNote').value = '';
   openModal('cgModal');
 });
 function openEditCg(code){
@@ -4543,6 +4994,12 @@ function openEditCg(code){
   document.getElementById('cgPhone').value = cg.phone||'';
   document.getElementById('cgHouseNo').value = cg.houseNo||'';
   document.getElementById('cgMoo').value = cg.moo||'';
+  const typeSel = document.getElementById('cgType');
+  const t = normalizeCgType(cg.cgType);
+  if(t && !Array.from(typeSel.options).some(o=>o.value===t)) typeSel.insertAdjacentHTML('beforeend', `<option value="${escHtml(t)}">${escHtml(t)}</option>`);
+  typeSel.value = t || 'CG รพ.สต.';
+  document.getElementById('cgWorkStatus').value = cgWorkStatus(cg);
+  document.getElementById('cgStatusNote').value = cg.statusNote||'';
   openModal('cgModal');
 }
 document.getElementById('cgSaveBtn').addEventListener('click', ()=>{
@@ -4550,14 +5007,19 @@ document.getElementById('cgSaveBtn').addEventListener('click', ()=>{
   const editId = document.getElementById('cgEditId').value;
   const name = document.getElementById('cgName').value.trim();
   if(!name){ toast('กรุณากรอกชื่อ','error'); return; }
-  if(!document.getElementById('cgMoo').value){ toast('กรุณาเลือกหมู่ที่','error'); return; }
+  const prev = editId ? (STATE.cgs[editId]||{}) : {};
+  const newStatus = document.getElementById('cgWorkStatus').value;
   const data = {
     name, idCard: document.getElementById('cgIdCard').value.trim(),
     phone: document.getElementById('cgPhone').value.trim(),
     houseNo: document.getElementById('cgHouseNo').value.trim(),
     moo: document.getElementById('cgMoo').value,
-    status:'active', createdAt: Date.now()
+    cgType: document.getElementById('cgType').value,
+    workStatus: newStatus,
+    statusNote: document.getElementById('cgStatusNote').value.trim(),
+    status: prev.status || 'active', createdAt: prev.createdAt || Date.now()
   };
+  if(!editId || cgWorkStatus(prev)!==newStatus){ data.workStatusUpdatedAt = Date.now(); data.workStatusUpdatedBy = CURRENT_USER ? CURRENT_USER.displayName : '-'; }
   const code = editId || nextCode(STATE.cgs, 'CG', 3);
   db.ref('cgs/'+code).update(data).then(()=>{ toast('บันทึกสำเร็จ','success'); closeModal('cgModal'); });
 });
@@ -4653,6 +5115,40 @@ function findColumnKey(headers, keywordGroups){
   }
   return null;
 }
+/* อ่านทุกชีต: หาแถวหัวตารางจากคำสำคัญ แล้วแปลงแถวถัดไปเป็นอ็อบเจ็กต์ (ข้ามแถวว่าง/แถวหัวตารางซ้ำ) */
+function readAllSheetsWithHeader(wb, headerKeywords){
+  const norm = v => String(v==null?'':v).replace(/[\s\u00a0]+/g,'').toLowerCase();
+  const kws = headerKeywords.map(norm);
+  const out = [];
+  wb.SheetNames.forEach(sn=>{
+    const aoa = XLSX.utils.sheet_to_json(wb.Sheets[sn], { header:1, defval:'', raw:true });
+    let hIdx = aoa.findIndex(row=>row.some(c=>kws.some(k=>norm(c)===k)));
+    if(hIdx < 0) hIdx = aoa.findIndex(row=>row.some(c=>kws.some(k=>norm(c).includes(k))));
+    if(hIdx < 0) return;
+    const headers = aoa[hIdx].map((h,i)=>String(h).trim() || ('__col'+i));
+    for(let i=hIdx+1;i<aoa.length;i++){
+      const row = aoa[i];
+      if(!row || row.every(c=>String(c).trim()==='')) continue;
+      if(row.some((c,j)=>String(c).trim()!=='' && String(c).trim()===headers[j] && kws.includes(norm(c)))) continue; /* หัวตารางซ้ำ */
+      const o = { __sheet: sn };
+      headers.forEach((h,j)=>{ o[h] = row[j]===undefined ? '' : row[j]; });
+      out.push(o);
+    }
+  });
+  return out;
+}
+function cleanPersonName(v){ return String(v==null?'':v).replace(/[\u00a0\s]+/g,' ').trim(); }
+function normalizeIdCard(v){
+  const raw = String(v==null?'':v).trim();
+  const digits = raw.replace(/\D/g,'');
+  return digits.length === 13 ? digits : raw;
+}
+function genderFromThaiPrefix(name){
+  const n = String(name||'').replace(/\s/g,'');
+  if(/^(นางสาว|น\.ส\.|นส\.|นาง|ด\.ญ\.|เด็กหญิง|ดญ\.)/.test(n)) return 'หญิง';
+  if(/^(นาย|ด\.ช\.|เด็กชาย|ดช\.)/.test(n)) return 'ชาย';
+  return '';
+}
 function parseGenderAge(s){
   if(!s) return { gender:'', age:null };
   const str = String(s);
@@ -4693,15 +5189,16 @@ document.getElementById('elderlyImportPreviewBtn').addEventListener('click', ()=
     try{
       const data = new Uint8Array(e.target.result);
       const wb = XLSX.read(data, { type:'array' });
-      const sheet = wb.Sheets[wb.SheetNames[0]];
-      const rows = XLSX.utils.sheet_to_json(sheet, { defval:'' });
+      /* อ่านทุกชีตในไฟล์ (เช่น กลุ่ม 1–4) และหาแถวหัวตารางอัตโนมัติ (รองรับไฟล์ที่มีแถวชื่อเรื่องอยู่ด้านบน) */
+      const rows = readAllSheetsWithHeader(wb, ['ชื่อสกุล','ชื่อ-สกุล','ชื่อ - สกุล','ชื่อ']);
       if(rows.length === 0){ toast('ไม่พบข้อมูลในไฟล์ หรือไฟล์ไม่มีหัวตาราง','error'); return; }
-      const headers = Object.keys(rows[0]);
+      const headers = Array.from(new Set(rows.flatMap(r=>Object.keys(r))));
 
       const colIdCard  = findColumnKey(headers, ['เลขประจำตัวประชาชน','เลขบัตรประชาชน','เลขบัตร']);
       const colName    = findColumnKey(headers, ['ชื่อสกุล','ชื่อ-สกุล','ชื่อ']);
       const colAdlGroup= findColumnKey(headers, ['กลุ่มadl','กลุ่ม adl','กลุ่ม']);
-      const colAdlScore= findColumnKey(headers, ['คะแนนadl','คะแนน adl','คะแนน']);
+      const colAdlScore= findColumnKey(headers, ['คะแนนadl','คะแนน adl','คะแนน'])
+                         || headers.find(h=>['adl','adlscore','barthel'].includes(String(h).toLowerCase().replace(/[\s\.\-]/g,''))) || null;
       const colTai     = findColumnKey(headers, ['คะแนนtai','คะแนน tai','ผลtai','ผล tai','tai']);
       const colGenderAge = findColumnKey(headers, ['เพศอายุ','เพศ/อายุ']);
       const colGender  = findColumnKey(headers, ['เพศ']);
@@ -4716,24 +5213,26 @@ document.getElementById('elderlyImportPreviewBtn').addEventListener('click', ()=
       if(!colName){ toast('ไม่พบคอลัมน์ชื่อผู้สูงอายุในไฟล์ กรุณาตรวจสอบหัวตาราง','error'); return; }
 
       const parsed = rows.map(r=>{
-        const name = String(r[colName]||'').trim();
-        if(!name) return null;
+        const name = cleanPersonName(r[colName]);
+        if(!name || name === String(colName).trim()) return null;
         let gender = '', age = null;
         if(colGenderAge){ const ga = parseGenderAge(r[colGenderAge]); gender = ga.gender; age = ga.age; }
         else{
           gender = colGender ? String(r[colGender]||'').trim() : '';
           age = colAge ? (parseInt(r[colAge],10) || null) : null;
         }
+        if(!gender) gender = genderFromThaiPrefix(name);
         const cgNameRaw = colCg ? String(r[colCg]||'').trim() : '';
         const cgCode = matchCgCodeByName(cgNameRaw);
         const adlGroupRaw = colAdlGroup ? String(r[colAdlGroup]||'').trim() : '';
         const adlGroup = ['1','2','3','4'].includes(adlGroupRaw) ? adlGroupRaw : '';
-        const adlScore = colAdlScore && r[colAdlScore]!=='' ? parseInt(r[colAdlScore],10) : null;
+        const _adlN = colAdlScore && r[colAdlScore]!=='' ? parseInt(r[colAdlScore],10) : NaN;
+        const adlScore = isNaN(_adlN) ? null : _adlN;
         /* แปลผลรหัส TAI ที่นำเข้าจากไฟล์ (เช่น "B5", "C3", "I1") ให้ตรงกับกลุ่ม/คำอธิบายที่ระบบกำหนดไว้โดยอัตโนมัติ */
         const taiRaw = colTai ? String(r[colTai]||'').trim().toUpperCase() : '';
         const taiCode = TAI_RESULTS[taiRaw] ? taiRaw : '';
         return {
-          idCard: colIdCard ? String(r[colIdCard]||'').trim() : '',
+          idCard: colIdCard ? normalizeIdCard(r[colIdCard]) : '',
           name, gender, age,
           adlGroup, adlScore, taiCode,
           houseNo: colHouseNo ? String(r[colHouseNo]||'').trim() : '',
@@ -4956,7 +5455,7 @@ function renderTaiCurrentSummary(e){
   const box = document.getElementById('taiCurrentSummaryBox');
   if(e && e.taiCode && TAI_RESULTS[e.taiCode]){
     const r = TAI_RESULTS[e.taiCode];
-    box.innerHTML = `ผล TAI ปัจจุบัน: <span style="color:#0F5590;">${r.mainGroupLabel} — รหัส ${r.code}</span><br><span style="font-weight:400;font-size:12px;color:#456;">${r.desc}</span>`;
+    box.innerHTML = `ผล TAI ปัจจุบัน: <span style="color:#5B3FB5;">${r.mainGroupLabel} — รหัส ${r.code}</span><br><span style="font-weight:400;font-size:12px;color:#456;">${r.desc}</span>`;
   } else {
     box.innerHTML = 'ยังไม่มีผลการประเมิน TAI สำหรับผู้สูงอายุคนนี้';
   }
@@ -5203,7 +5702,7 @@ function buildHistoryReportPageHTML(rowsChunk, pageNo, totalPages){
     </tr>`).join('');
   return `
   <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:18px;font-weight:700;">รายงานประวัติผู้สูงอายุและผู้มีภาวะพึ่งพิงที่เคยได้รับการดูแล</div>
@@ -5214,7 +5713,7 @@ function buildHistoryReportPageHTML(rowsChunk, pageNo, totalPages){
     <div style="padding:16px 24px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:11.5px;">
         <thead>
-          <tr style="background:#EAF6FC;color:#0F5590;">
+          <tr style="background:#F7F4FE;color:#5B3FB5;">
             <th style="padding:6px 8px;border:1px solid #ddd;">ลำดับ</th>
             <th style="padding:6px 8px;border:1px solid #ddd;">ชื่อ-สกุล</th>
             <th style="padding:6px 8px;border:1px solid #ddd;">อายุ</th>
@@ -5344,10 +5843,10 @@ function buildVisitBlockHTML(v, elderly, cg, imgW, imgH, fontScale){
   const rehabText = rehabList.length ? rehabList.join(', ') : '';
 
   return `
-  <div style="display:flex;gap:12px;border:1px solid var(--border,#D6ECF7);border-radius:8px;padding:10px;margin-bottom:9px;flex:1;">
+  <div style="display:flex;gap:12px;border:1px solid var(--border,#E9E2FB);border-radius:8px;padding:10px;margin-bottom:9px;flex:1;">
     <img src="${v.photoUrl}" crossorigin="anonymous" style="width:${imgW}px;height:${imgH}px;object-fit:cover;border-radius:6px;flex-shrink:0;border:1px solid #ddd;">
-    <div style="flex:1;font-size:${baseFont}px;line-height:1.55;color:#1B2E3B;">
-      <div style="font-weight:700;font-size:${titleFont}px;color:#0F5590;">${elderly.name} <span style="font-weight:400;color:#5B7A8C;font-size:${baseFont}px;">(วันที่ ${formatThaiDate(v.visitDate)})</span></div>
+    <div style="flex:1;font-size:${baseFont}px;line-height:1.55;color:#2B2341;">
+      <div style="font-weight:700;font-size:${titleFont}px;color:#5B3FB5;">${elderly.name} <span style="font-weight:400;color:#6F6688;font-size:${baseFont}px;">(วันที่ ${formatThaiDate(v.visitDate)})</span></div>
       <div>CG ผู้เยี่ยม: ${cg?cg.name:'-'}</div>
       <div>ความดัน ${bpText} mmHg &nbsp;|&nbsp; ชีพจร ${prText} &nbsp;|&nbsp; อัตราหายใจ ${rrText} &nbsp;|&nbsp; อุณหภูมิ ${tText}°C &nbsp;|&nbsp; น้ำหนัก ${wtText} กก.</div>
       <div>คะแนนประเมิน ADL ครั้งนี้: ${adlText}${healthStatusText ? ` &nbsp;|&nbsp; ภาวะสุขภาพครั้งนี้: ${healthStatusText}` : ''}${ltcGroupText ? ` &nbsp;|&nbsp; กลุ่ม: ${ltcGroupText}` : ''}</div>
@@ -5375,7 +5874,7 @@ function buildPdfPageHTML(elderly, cg, visitsChunk, monthLabel, yearBE){
 
   return `
   <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:18px;font-weight:700;">สรุปการเยี่ยมผู้สูงอายุที่มีภาวะพึ่งพิง</div>
@@ -5385,9 +5884,9 @@ function buildPdfPageHTML(elderly, cg, visitsChunk, monthLabel, yearBE){
       <div style="width:58px;flex-shrink:0;"></div>
     </div>
 
-    <div style="text-align:center;font-size:16px;font-weight:700;color:#0F5590;padding:10px 0 4px;">${elderly.name}</div>
-    <div style="text-align:center;font-size:11.5px;color:#5B7A8C;padding-bottom:4px;">อายุ ${elderly.age||'-'} ปี &nbsp;|&nbsp; CG ผู้ดูแล: ${cg?cg.name:'-'} &nbsp;|&nbsp; จำนวน ${visitsChunk.length} ครั้งในหน้านี้</div>
-    <div style="text-align:center;font-size:10.5px;color:#5B7A8C;padding-bottom:8px;line-height:1.6;">
+    <div style="text-align:center;font-size:16px;font-weight:700;color:#5B3FB5;padding:10px 0 4px;">${elderly.name}</div>
+    <div style="text-align:center;font-size:11.5px;color:#6F6688;padding-bottom:4px;">อายุ ${elderly.age||'-'} ปี &nbsp;|&nbsp; CG ผู้ดูแล: ${cg?cg.name:'-'} &nbsp;|&nbsp; จำนวน ${visitsChunk.length} ครั้งในหน้านี้</div>
+    <div style="text-align:center;font-size:10.5px;color:#6F6688;padding-bottom:8px;line-height:1.6;">
       โรคหลัก: ${elderly.mainDiagnosis||'-'} ${elderly.comorbidities ? `&nbsp;|&nbsp; โรคร่วม: ${elderly.comorbidities}` : ''}<br>
       กลุ่ม ADL: ${(getAdlBarthelInfo(elderly)||{}).group||'-'} &nbsp;|&nbsp; TAI: ${elderly.taiLabel||'-'} &nbsp;|&nbsp; ญาติผู้ดูแลหลัก: ${elderly.primaryRelativeName||'-'}
     </div>
@@ -5396,13 +5895,13 @@ function buildPdfPageHTML(elderly, cg, visitsChunk, monthLabel, yearBE){
       ${blocks}
     </div>
 
-    <div style="margin:6px 24px 0;background:#EAF6FC;border-radius:8px;padding:10px 14px;">
-      <div style="font-size:12.5px;font-weight:700;color:#1571BA;margin-bottom:4px;">📝 สรุปรายงาน</div>
-      <div style="font-size:11px;color:#1B2E3B;">คะแนน ADL แต่ละครั้ง: ${adlSummary}</div>
-      <div style="font-size:11px;color:#1B2E3B;margin-top:2px;">ปัญหาสำคัญที่พบในช่วงนี้: ${notedIssues.length ? notedIssues.join(' | ') : 'ไม่พบปัญหาเด่นชัด'}</div>
+    <div style="margin:6px 24px 0;background:#F7F4FE;border-radius:8px;padding:10px 14px;">
+      <div style="font-size:12.5px;font-weight:700;color:#7C5CD6;margin-bottom:4px;">📝 สรุปรายงาน</div>
+      <div style="font-size:11px;color:#2B2341;">คะแนน ADL แต่ละครั้ง: ${adlSummary}</div>
+      <div style="font-size:11px;color:#2B2341;margin-top:2px;">ปัญหาสำคัญที่พบในช่วงนี้: ${notedIssues.length ? notedIssues.join(' | ') : 'ไม่พบปัญหาเด่นชัด'}</div>
     </div>
 
-    <div style="display:flex;justify-content:space-between;margin:14px 24px 0;font-size:11px;color:#1B2E3B;text-align:center;">
+    <div style="display:flex;justify-content:space-between;margin:14px 24px 0;font-size:11px;color:#2B2341;text-align:center;">
       <div style="width:47%;">
         <div>ลงชื่อ ..................................................... </div>
         <div style="margin-top:4px;">( ${cg ? cg.name : '.....................................'} )</div>
@@ -5599,7 +6098,7 @@ function buildElderlyReportPdfPageHTML(rowsChunk, monthLabel, yBE, pageNo, total
     </tr>`).join('');
   return `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">รายงานข้อมูลผู้สูงอายุ (สถานะทั้งหมด)</div>
@@ -5610,7 +6109,7 @@ function buildElderlyReportPdfPageHTML(rowsChunk, monthLabel, yBE, pageNo, total
     <div style="padding:12px 16px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:9.5px;">
         <thead>
-          <tr style="background:#EAF6FC;color:#0F5590;">
+          <tr style="background:#F7F4FE;color:#5B3FB5;">
             <th style="padding:4px 5px;border:1px solid #ddd;">ลำดับ</th>
             <th style="padding:4px 5px;border:1px solid #ddd;">ชื่อ-สกุล</th>
             <th style="padding:4px 5px;border:1px solid #ddd;">อายุ</th>
@@ -5765,7 +6264,7 @@ function buildAllElderlyReportPdfPageHTML(rowsChunk, pageNo, totalPages){
     </tr>`).join('');
   return `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">รายชื่อและข้อมูลผู้สูงอายุทั้งหมด</div>
@@ -5775,7 +6274,7 @@ function buildAllElderlyReportPdfPageHTML(rowsChunk, pageNo, totalPages){
     </div>
     <div style="padding:12px 16px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:9.5px;">
-        <thead><tr style="background:#EAF6FC;color:#0F5590;">
+        <thead><tr style="background:#F7F4FE;color:#5B3FB5;">
           <th style="padding:4px 5px;border:1px solid #ddd;">ลำดับ</th>
           <th style="padding:4px 5px;border:1px solid #ddd;">ชื่อ-สกุล</th>
           <th style="padding:4px 5px;border:1px solid #ddd;">อายุ</th>
@@ -5851,7 +6350,7 @@ function openElderlyProfile(id){
   const lastNote = visits.slice().reverse().find(v=>v.note)?.note || '';
   const lastOtherSupport = visits.slice().reverse().find(v=>v.otherSupport)?.otherSupport || '';
   const lastSupportItems = visits.slice().reverse().reduce((acc,v)=>acc.length?(acc):(v.supportItems||[]),[]);
-  const photoHtml = e.photoUrl ? `<img src="${e.photoUrl}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--border);flex-shrink:0;">` : `<div style="width:80px;height:80px;border-radius:50%;background:#EAF6FC;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;">👴</div>`;
+  const photoHtml = e.photoUrl ? `<img src="${e.photoUrl}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--border);flex-shrink:0;">` : `<div style="width:80px;height:80px;border-radius:50%;background:#F7F4FE;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;">👴</div>`;
   const profileRows = indivProfileRows(data).map(([label,value])=>`
     <div style="display:flex;padding:5px 0;border-bottom:1px solid #EEF2F5;font-size:13px;">
       <div style="width:45%;font-weight:600;color:#456;">${label}</div>
@@ -5862,10 +6361,10 @@ function openElderlyProfile(id){
     return `<div style="padding:6px 0;border-bottom:1px solid #EEF2F5;font-size:12.5px;"><b>${r.date}</b> — CG: ${r.cgName} | BP: ${r.bp} | ADL: ${r.adlScore} ${r.note ? `| <i>${r.note.slice(0,60)}${r.note.length>60?'...':''}</i>` : ''}</div>`;
   }).join('') || '<p class="muted">ยังไม่มีประวัติการเยี่ยม</p>';
   const supHtml = lastSupportItems.length
-    ? lastSupportItems.map(it=>`<span style="background:#EAF6FC;border:1px solid #B9E1F5;border-radius:20px;padding:2px 12px;font-size:12px;">${CATEGORY_LABELS_INV[it.category]||it.category}: ${it.itemType}</span>`).join(' ')
+    ? lastSupportItems.map(it=>`<span style="background:#F7F4FE;border:1px solid #DCD0FA;border-radius:20px;padding:2px 12px;font-size:12px;">${CATEGORY_LABELS_INV[it.category]||it.category}: ${it.itemType}</span>`).join(' ')
     : '<span class="muted">ไม่มีความต้องการที่บันทึกไว้</span>';
   document.getElementById('elderlyProfileBody').innerHTML = `
-    <div style="background:linear-gradient(120deg,#0F5590,#43C1F1);padding:18px 22px;border-radius:12px 12px 0 0;margin:-18px -18px 16px;display:flex;align-items:center;gap:16px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#5B3FB5,#A58BF0);padding:18px 22px;border-radius:12px 12px 0 0;margin:-18px -18px 16px;display:flex;align-items:center;gap:16px;color:#fff;">
       ${photoHtml}
       <div>
         <div style="font-size:18px;font-weight:800;">${e.name}</div>
@@ -5876,7 +6375,7 @@ function openElderlyProfile(id){
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
       <div style="flex:1;min-width:260px;">${profileRows}</div>
     </div>
-    <div style="background:#F7FBFF;border:1px solid #E3F0F8;border-radius:10px;padding:12px 14px;margin-bottom:10px;">
+    <div style="background:#FBF9FF;border:1px solid #EEE8FB;border-radius:10px;padding:12px 14px;margin-bottom:10px;">
       <b style="font-size:13px;">🏃 ประวัติการเยี่ยม (5 ครั้งล่าสุด)</b>
       <div style="margin-top:6px;">${visitRows}</div>
       <a href="javascript:void(0)" onclick="closeModal('elderlyProfileModal');document.querySelector('[data-tab=pdf]').click();setTimeout(()=>{document.getElementById('indivReportElderly').value='${id}'},200);" style="font-size:12px;">→ ดูประวัติทั้งหมดในรายงาน</a>
@@ -5995,7 +6494,7 @@ function buildIndivReportHTML(data){
     <table style="border-collapse:collapse;width:100%;">${rows}</table>
     <h3 style="margin-top:20px;">2. ประวัติการได้รับการเยี่ยม (ทั้งหมด ${data.visits.length} ครั้ง)</h3>
     <table style="border-collapse:collapse;width:100%;font-size:12px;">
-      <tr style="background:#EAF6FC;">
+      <tr style="background:#F7F4FE;">
         <th style="padding:5px 8px;border:1px solid #999;">ลำดับ</th><th style="padding:5px 8px;border:1px solid #999;">วันที่</th>
         <th style="padding:5px 8px;border:1px solid #999;">CG ผู้เยี่ยม</th><th style="padding:5px 8px;border:1px solid #999;">ความดัน</th>
         <th style="padding:5px 8px;border:1px solid #999;">ชีพจร</th><th style="padding:5px 8px;border:1px solid #999;">อุณหภูมิ</th>
@@ -6029,10 +6528,10 @@ document.getElementById('exportIndivWordBtn').addEventListener('click', ()=>{
 /* ---- PDF: หน้าแรกข้อมูลส่วนบุคคล ตามด้วยประวัติการเยี่ยม (แบ่งหน้าถ้ามีหลายครั้ง) ---- */
 function buildIndivProfilePdfPageHTML(data, pageNo, totalPages){
   const rowsHtml = indivProfileRows(data).map(([label,value])=>`
-    <tr><td style="padding:6px 10px;border:1px solid #ddd;font-weight:700;width:32%;background:#F7FBFF;">${label}</td><td style="padding:6px 10px;border:1px solid #ddd;">${value}</td></tr>`).join('');
+    <tr><td style="padding:6px 10px;border:1px solid #ddd;font-weight:700;width:32%;background:#FBF9FF;">${label}</td><td style="padding:6px 10px;border:1px solid #ddd;">${value}</td></tr>`).join('');
   return `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">รายงานข้อมูลส่วนบุคคลผู้สูงอายุ</div>
@@ -6041,7 +6540,7 @@ function buildIndivProfilePdfPageHTML(data, pageNo, totalPages){
       <div style="width:52px;"></div>
     </div>
     <div style="padding:16px 22px;flex:1;overflow:hidden;">
-      <div style="text-align:center;font-size:18px;font-weight:700;color:#0F5590;margin-bottom:10px;">${data.e.name}</div>
+      <div style="text-align:center;font-size:18px;font-weight:700;color:#5B3FB5;margin-bottom:10px;">${data.e.name}</div>
       <table style="width:100%;border-collapse:collapse;font-size:12.5px;">${rowsHtml}</table>
     </div>
     <div style="text-align:center;font-size:10px;color:#777;border-top:1px solid #eee;padding:5px 0 2px;">หน้า ${pageNo}/${totalPages} | ${FACILITY_NAME}</div><div style="text-align:center;font-size:8px;color:#aaa;padding-bottom:4px;">${COPYRIGHT_NOTICE}</div>
@@ -6050,7 +6549,7 @@ function buildIndivProfilePdfPageHTML(data, pageNo, totalPages){
 function buildIndivVisitsPdfPageHTML(data, visitsChunk, pageNo, totalPages){
   const rowsHtml = visitsChunk.map((v,i)=>{
     const r = indivVisitRow(v);
-    return `<tr style="background:${i%2?'#F7FBFF':'#fff'}">
+    return `<tr style="background:${i%2?'#FBF9FF':'#fff'}">
       <td style="padding:4px 6px;border:1px solid #ddd;text-align:center;">${data.visits.indexOf(v)+1}</td>
       <td style="padding:4px 6px;border:1px solid #ddd;">${r.date}</td>
       <td style="padding:4px 6px;border:1px solid #ddd;">${r.cgName}</td>
@@ -6065,7 +6564,7 @@ function buildIndivVisitsPdfPageHTML(data, visitsChunk, pageNo, totalPages){
   }).join('');
   return `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:16px;font-weight:700;">ประวัติการได้รับการเยี่ยม — ${data.e.name}</div>
@@ -6075,7 +6574,7 @@ function buildIndivVisitsPdfPageHTML(data, visitsChunk, pageNo, totalPages){
     </div>
     <div style="padding:12px 18px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:10.5px;">
-        <thead><tr style="background:#EAF6FC;color:#0F5590;">
+        <thead><tr style="background:#F7F4FE;color:#5B3FB5;">
           <th style="padding:4px 6px;border:1px solid #ddd;">ลำดับ</th><th style="padding:4px 6px;border:1px solid #ddd;">วันที่</th>
           <th style="padding:4px 6px;border:1px solid #ddd;">CG ผู้เยี่ยม</th><th style="padding:4px 6px;border:1px solid #ddd;">ความดัน</th>
           <th style="padding:4px 6px;border:1px solid #ddd;">ชีพจร</th><th style="padding:4px 6px;border:1px solid #ddd;">อุณหภูมิ</th>
@@ -6784,7 +7283,7 @@ document.getElementById('exportMatSupplyPdfBtn').addEventListener('click', async
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
   const rowsHtml = entries.map(([,ms],i)=>`
-    <tr style="background:${i%2?'#F7FBFF':'#fff'}">
+    <tr style="background:${i%2?'#FBF9FF':'#fff'}">
       <td style="padding:5px 8px;border:1px solid #ddd;">${ms.dispatchDate?formatThaiDate(ms.dispatchDate):'-'}</td>
       <td style="padding:5px 8px;border:1px solid #ddd;">${ms.elderlyName||'-'}</td>
       <td style="padding:5px 8px;border:1px solid #ddd;">${ms.itemType||'-'}</td>
@@ -7021,7 +7520,7 @@ function openInventoryDetail(id){
   if(!inv) return;
   const isDurable = inv.category==='durable';
   const themeColor = isDurable ? '#185FA5' : '#2E7D32';
-  const themeBg = isDurable ? 'linear-gradient(135deg,#0F5590,#43C1F1)' : 'linear-gradient(135deg,#1B5E20,#4CAF50)';
+  const themeBg = isDurable ? 'linear-gradient(135deg,#5B3FB5,#A58BF0)' : 'linear-gradient(135deg,#1B5E20,#4CAF50)';
   const availCodes = sortAssetCodes(inv.availableAssetCodes || inv.assetCodes || []);
   const codesHtml = availCodes.length || (inv.assetCodes||[]).length
     ? sortAssetCodes(inv.assetCodes||[]).map((c,i)=>{
@@ -7044,11 +7543,11 @@ function openInventoryDetail(id){
       <div style="font-size:20px;font-weight:800;margin-top:4px;">${inv.itemType||'-'}</div>
     </div>
     <div style="display:flex;gap:10px;margin-bottom:14px;">
-      <div style="flex:1;background:#F7FBFF;border-radius:10px;padding:12px;text-align:center;border:1px solid #E3F0F8;">
+      <div style="flex:1;background:#FBF9FF;border-radius:10px;padding:12px;text-align:center;border:1px solid #EEE8FB;">
         <div style="font-size:26px;font-weight:800;color:${themeColor};">${realTotal}</div>
         <div style="font-size:11.5px;color:#6b7d8a;margin-top:2px;">จำนวนทั้งหมด (${inv.unit||'หน่วย'})</div>
       </div>
-      <div style="flex:1;background:#F7FBFF;border-radius:10px;padding:12px;text-align:center;border:1px solid #E3F0F8;">
+      <div style="flex:1;background:#FBF9FF;border-radius:10px;padding:12px;text-align:center;border:1px solid #EEE8FB;">
         <div style="font-size:26px;font-weight:800;color:${realRemain<=0?'#D8503A':realRemain<realTotal?'#B8860B':themeColor};">${realRemain}</div>
         <div style="font-size:11.5px;color:#6b7d8a;margin-top:2px;">${isDurable ? 'ยอดคงเหลือ (ว่างให้ยืม)' : 'ยอดคงเหลือในคลัง'}</div>
       </div>
@@ -7277,7 +7776,7 @@ document.getElementById('exportInventoryPdfBtn').addEventListener('click', async
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
   const rowsHtml = sorted.map(([,inv],i)=>`
-    <tr style="background:${i%2?'#F7FBFF':'#fff'}">
+    <tr style="background:${i%2?'#FBF9FF':'#fff'}">
       <td style="padding:5px 8px;border:1px solid #ddd;">${CATEGORY_LABELS_INV[inv.category]||inv.category}</td>
       <td style="padding:5px 8px;border:1px solid #ddd;">${inv.itemType||'-'}</td>
       <td style="padding:5px 8px;border:1px solid #ddd;text-align:center;font-weight:700;">${inv.quantity??0}</td>
@@ -7287,7 +7786,7 @@ document.getElementById('exportInventoryPdfBtn').addEventListener('click', async
     </tr>`).join('');
   root.innerHTML = `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">รายงานคงคลังอุปกรณ์การแพทย์</div>
@@ -7297,7 +7796,7 @@ document.getElementById('exportInventoryPdfBtn').addEventListener('click', async
     </div>
     <div style="padding:14px 20px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:12px;">
-        <thead><tr style="background:#EAF6FC;color:#0F5590;font-weight:700;">
+        <thead><tr style="background:#F7F4FE;color:#5B3FB5;font-weight:700;">
           <th style="padding:7px 8px;border:1px solid #ddd;">หมวดหมู่</th>
           <th style="padding:7px 8px;border:1px solid #ddd;">รายการ</th>
           <th style="padding:7px 8px;border:1px solid #ddd;">จำนวนคงคลัง</th>
@@ -7346,7 +7845,7 @@ document.getElementById('exportControlPdfBtn').addEventListener('click', async (
     const balance = (inv.quantity??0) - out;
     const statusColor = balance<=0?'#D8503A':(balance<=5?'#F9A825':'#2E7D32');
     const statusText = balance<=0?'หมด/ต้องเติม':(balance<=5?'เหลือน้อย':'พอเพียง');
-    return `<tr style="background:${i%2?'#F7FBFF':'#fff'}">
+    return `<tr style="background:${i%2?'#FBF9FF':'#fff'}">
       <td style="padding:5px 8px;border:1px solid #ddd;">${CATEGORY_LABELS_INV[inv.category]||inv.category}</td>
       <td style="padding:5px 8px;border:1px solid #ddd;">${inv.itemType||'-'}</td>
       <td style="padding:5px 8px;border:1px solid #ddd;text-align:center;">${inv.quantity??0}</td>
@@ -7358,7 +7857,7 @@ document.getElementById('exportControlPdfBtn').addEventListener('click', async (
   }).join('');
   root.innerHTML = `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">รายงานควบคุมอุปกรณ์การแพทย์</div>
@@ -7368,7 +7867,7 @@ document.getElementById('exportControlPdfBtn').addEventListener('click', async (
     </div>
     <div style="padding:14px 20px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:12px;">
-        <thead><tr style="background:#EAF6FC;color:#0F5590;font-weight:700;">
+        <thead><tr style="background:#F7F4FE;color:#5B3FB5;font-weight:700;">
           <th style="padding:7px 8px;border:1px solid #ddd;">หมวดหมู่</th>
           <th style="padding:7px 8px;border:1px solid #ddd;">รายการ</th>
           <th style="padding:7px 8px;border:1px solid #ddd;">ยอดคงคลัง</th>
@@ -7442,7 +7941,7 @@ function renderEqStatusDashboard(){
     { id:'green',  grad:'linear-gradient(120deg,#1B5E20,#43A047)', icon:'🟢', label:'พร้อมใช้งาน',            count:greenCount,         sub:'ชิ้น/รายการในคลัง' },
     { id:'loan',   grad:'linear-gradient(120deg,#B8860B,#FDB813)', icon:'🔄', label:'ทะเบียนยืม-คืน (LTC)',  count:ltcBorrowed.length, sub:'รายการยังไม่คืน' },
     { id:'ext',    grad:'linear-gradient(120deg,#E65100,#F57C00)', icon:'👤', label:'ทะเบียนยืม-คืน (ภายนอก)',count:extBorrowed.length, sub:'บุคคลนอกโครงการ' },
-    { id:'mat',    grad:'linear-gradient(120deg,#1565C0,#1E88E5)', icon:'💊', label:'ทะเบียนจ่ายวัสดุ',       count:matAll.length,       sub:'รายการทั้งหมด' },
+    { id:'mat',    grad:'linear-gradient(120deg,#6D4FD1,#9B7FEA)', icon:'💊', label:'ทะเบียนจ่ายวัสดุ',       count:matAll.length,       sub:'รายการทั้งหมด' },
     { id:'purple', grad:'linear-gradient(120deg,#4A148C,#7B1FA2)', icon:'🔧', label:'ส่งซ่อม/รอจำหน่าย',      count:repairPend.length,   sub:'รายการค้างอยู่' },
   ];
   dash.innerHTML = `
@@ -7506,7 +8005,7 @@ function showEqStatusDetail(tab){
       </div>`; }).join('') : '<p class="muted">ไม่มีรายการในหมวดนี้</p>');
 
   } else if(tab==='mat'){
-    title='💊 ทะเบียนการจ่ายวัสดุการแพทย์'; color='#1565C0';
+    title='💊 ทะเบียนการจ่ายวัสดุการแพทย์'; color='#6D4FD1';
     const now = new Date();
     const defYear = beYear(now.getFullYear()), defMonth = now.getMonth()+1;
     const yrs = [...new Set(Object.values(STATE.materialSupply||{}).map(ms=>ms.dispatchDate?beYear(parseInt(ms.dispatchDate.split('-')[0])):0))].filter(Boolean).sort((a,b)=>b-a);
@@ -7561,21 +8060,21 @@ function renderMatPopupTable(){
   }).sort(([,a],[,b])=>(b.createdAt||0)-(a.createdAt||0));
   if(!entries.length){ wrap.innerHTML='<p class="muted">ไม่มีข้อมูลในช่วงเวลานี้</p>'; return; }
   wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:12.5px;">
-    <thead><tr style="background:#E3F2FD;color:#1565C0;">
-      <th style="padding:6px 8px;border:1px solid #BBDEFB;">วันที่จ่าย</th>
-      <th style="padding:6px 8px;border:1px solid #BBDEFB;">ผู้รับ</th>
-      <th style="padding:6px 8px;border:1px solid #BBDEFB;">ประเภท</th>
-      <th style="padding:6px 8px;border:1px solid #BBDEFB;">รายการ</th>
-      <th style="padding:6px 8px;border:1px solid #BBDEFB;text-align:center;">จำนวน</th>
-      <th style="padding:6px 8px;border:1px solid #BBDEFB;">หน่วย</th>
+    <thead><tr style="background:#F1EBFF;color:#6D4FD1;">
+      <th style="padding:6px 8px;border:1px solid #DDD2FB;">วันที่จ่าย</th>
+      <th style="padding:6px 8px;border:1px solid #DDD2FB;">ผู้รับ</th>
+      <th style="padding:6px 8px;border:1px solid #DDD2FB;">ประเภท</th>
+      <th style="padding:6px 8px;border:1px solid #DDD2FB;">รายการ</th>
+      <th style="padding:6px 8px;border:1px solid #DDD2FB;text-align:center;">จำนวน</th>
+      <th style="padding:6px 8px;border:1px solid #DDD2FB;">หน่วย</th>
     </tr></thead>
     <tbody>${entries.map(([,ms],i)=>`<tr style="background:${i%2?'#F5F5F5':'#fff'}">
-      <td style="padding:5px 8px;border:1px solid #E3F2FD;">${ms.dispatchDate?formatThaiDate(ms.dispatchDate,true):'-'}</td>
-      <td style="padding:5px 8px;border:1px solid #E3F2FD;">${ms.elderlyName||'-'}</td>
-      <td style="padding:5px 8px;border:1px solid #E3F2FD;"><span class="badge ${ms.borrowerType==='external'?'obt':'normal'}" style="font-size:10px;">${ms.borrowerType==='external'?'ภายนอก':'LTC'}</span></td>
-      <td style="padding:5px 8px;border:1px solid #E3F2FD;">${ms.itemType||'-'}</td>
-      <td style="padding:5px 8px;border:1px solid #E3F2FD;text-align:center;font-weight:700;">${ms.quantity||0}</td>
-      <td style="padding:5px 8px;border:1px solid #E3F2FD;">${ms.unit||'-'}</td>
+      <td style="padding:5px 8px;border:1px solid #F1EBFF;">${ms.dispatchDate?formatThaiDate(ms.dispatchDate,true):'-'}</td>
+      <td style="padding:5px 8px;border:1px solid #F1EBFF;">${ms.elderlyName||'-'}</td>
+      <td style="padding:5px 8px;border:1px solid #F1EBFF;"><span class="badge ${ms.borrowerType==='external'?'obt':'normal'}" style="font-size:10px;">${ms.borrowerType==='external'?'ภายนอก':'LTC'}</span></td>
+      <td style="padding:5px 8px;border:1px solid #F1EBFF;">${ms.itemType||'-'}</td>
+      <td style="padding:5px 8px;border:1px solid #F1EBFF;text-align:center;font-weight:700;">${ms.quantity||0}</td>
+      <td style="padding:5px 8px;border:1px solid #F1EBFF;">${ms.unit||'-'}</td>
     </tr>`).join('')}</tbody>
   </table>`;
 }
@@ -7837,7 +8336,7 @@ function buildLoanContractHTML(payload){
       <div>เบอร์โทรศัพท์ญาติ/ผู้ติดต่อ: ${relativePhone||'-'}</div>`;
   return `
   <div style="width:754px;min-height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:19px;font-weight:700;">สัญญายืมครุภัณฑ์การแพทย์</div>
@@ -7845,7 +8344,7 @@ function buildLoanContractHTML(payload){
       </div>
       <div style="width:60px;flex-shrink:0;"></div>
     </div>
-    <div style="padding:26px 34px;flex:1;font-size:13px;color:#1B2E3B;line-height:1.9;">
+    <div style="padding:26px 34px;flex:1;font-size:13px;color:#2B2341;line-height:1.9;">
       <div style="text-align:right;margin-bottom:10px;">เลขที่สัญญา ${contractNo}</div>
       <div>ทำที่ ${FACILITY_NAME} ${FACILITY_ADDRESS}</div>
       <div>วันที่ ${dateReceived ? formatThaiDate(dateReceived) : '-'}</div>
@@ -7853,7 +8352,7 @@ function buildLoanContractHTML(payload){
       ${borrowerInfoHtml}
       <div style="margin-top:16px;font-weight:700;">รายการครุภัณฑ์ที่ยืม</div>
       <table style="width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px;">
-        <thead><tr style="background:#EAF6FC;color:#0F5590;">
+        <thead><tr style="background:#F7F4FE;color:#5B3FB5;">
           <th style="padding:7px 8px;border:1px solid #999;">ลำดับ</th>
           <th style="padding:7px 8px;border:1px solid #999;">รายการครุภัณฑ์</th>
           <th style="padding:7px 8px;border:1px solid #999;">เลขครุภัณฑ์</th>
@@ -7926,7 +8425,7 @@ function buildReturnReceiptHTML(payload){
       </div>
       <div style="width:60px;flex-shrink:0;"></div>
     </div>
-    <div style="padding:26px 34px;flex:1;font-size:13px;color:#1B2E3B;line-height:1.9;">
+    <div style="padding:26px 34px;flex:1;font-size:13px;color:#2B2341;line-height:1.9;">
       <div style="text-align:right;margin-bottom:10px;">เลขที่ใบส่งคืน ${receiptNo}</div>
       <div>ทำที่ ${FACILITY_NAME} ${FACILITY_ADDRESS}</div>
       <div>วันที่ส่งคืน ${dateReturned ? formatThaiDate(dateReturned) : '-'}</div>
@@ -8245,7 +8744,7 @@ document.getElementById('exportBorrowedPdfBtn').addEventListener('click', async 
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
   const rowsHtml = rows.map((r,i)=>`
-    <tr style="background:${i%2?'#F7FBFF':'#fff'}">
+    <tr style="background:${i%2?'#FBF9FF':'#fff'}">
       <td style="padding:5px 8px;border:1px solid #ddd;">${r.elderlyName}</td>
       <td style="padding:5px 8px;border:1px solid #ddd;">${r.relativePhone}</td>
       <td style="padding:5px 8px;border:1px solid #ddd;">${r.itemCode}</td>
@@ -8256,7 +8755,7 @@ document.getElementById('exportBorrowedPdfBtn').addEventListener('click', async 
     </tr>`).join('');
   root.innerHTML = `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">รายงานรายการอุปกรณ์ที่ถูกยืม (ยังไม่คืน)</div>
@@ -8266,7 +8765,7 @@ document.getElementById('exportBorrowedPdfBtn').addEventListener('click', async 
     </div>
     <div style="padding:14px 20px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:11px;">
-        <thead><tr style="background:#EAF6FC;color:#0F5590;font-weight:700;">
+        <thead><tr style="background:#F7F4FE;color:#5B3FB5;font-weight:700;">
           <th style="padding:7px 8px;border:1px solid #ddd;">ชื่อผู้สูงอายุ</th>
           <th style="padding:7px 8px;border:1px solid #ddd;">เบอร์โทรญาติ</th>
           <th style="padding:7px 8px;border:1px solid #ddd;">เลขครุภัณฑ์</th>
@@ -8450,7 +8949,7 @@ function buildEquipmentSummaryPageHTML(stats, filterLabel){
     </tr>`).join('');
   return `
   <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:19px;font-weight:700;">ทะเบียนคุมครุภัณฑ์และวัสดุการแพทย์</div>
@@ -8462,38 +8961,38 @@ function buildEquipmentSummaryPageHTML(stats, filterLabel){
 
     <div style="padding:22px 26px;flex:1;">
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
-        <div style="background:#EAF6FC;border-radius:10px;padding:14px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:700;color:#0F5590;">${stats.totalRecords}</div>
-          <div style="font-size:11px;color:#5B7A8C;">รายการทั้งหมด</div>
+        <div style="background:#F7F4FE;border-radius:10px;padding:14px 8px;text-align:center;">
+          <div style="font-size:22px;font-weight:700;color:#5B3FB5;">${stats.totalRecords}</div>
+          <div style="font-size:11px;color:#6F6688;">รายการทั้งหมด</div>
         </div>
-        <div style="background:#EAF6FC;border-radius:10px;padding:14px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:700;color:#0F5590;">${stats.totalQuantity}</div>
-          <div style="font-size:11px;color:#5B7A8C;">จำนวนชิ้นรวม</div>
+        <div style="background:#F7F4FE;border-radius:10px;padding:14px 8px;text-align:center;">
+          <div style="font-size:22px;font-weight:700;color:#5B3FB5;">${stats.totalQuantity}</div>
+          <div style="font-size:11px;color:#6F6688;">จำนวนชิ้นรวม</div>
         </div>
         <div style="background:#FDECE5;border-radius:10px;padding:14px 8px;text-align:center;">
           <div style="font-size:22px;font-weight:700;color:#D8503A;">${stats.pendingCount}</div>
-          <div style="font-size:11px;color:#5B7A8C;">ยังไม่คืน</div>
+          <div style="font-size:11px;color:#6F6688;">ยังไม่คืน</div>
         </div>
-        <div style="background:#EAF6FC;border-radius:10px;padding:14px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:700;color:#0F5590;">${stats.returnedCount}</div>
-          <div style="font-size:11px;color:#5B7A8C;">คืนแล้ว</div>
+        <div style="background:#F7F4FE;border-radius:10px;padding:14px 8px;text-align:center;">
+          <div style="font-size:22px;font-weight:700;color:#5B3FB5;">${stats.returnedCount}</div>
+          <div style="font-size:11px;color:#6F6688;">คืนแล้ว</div>
         </div>
       </div>
 
-      <div style="font-size:13px;font-weight:700;color:#1571BA;margin-bottom:8px;">📋 รายการที่ยังไม่คืน (สำหรับติดตาม)</div>
+      <div style="font-size:13px;font-weight:700;color:#7C5CD6;margin-bottom:8px;">📋 รายการที่ยังไม่คืน (สำหรับติดตาม)</div>
       <table style="width:100%;border-collapse:collapse;font-size:11px;">
         <thead>
-          <tr style="background:#EAF6FC;">
-            <th style="padding:6px 4px;text-align:center;color:#0F5590;">ลำดับ</th>
-            <th style="padding:6px 4px;text-align:left;color:#0F5590;">ชื่อผู้สูงอายุ</th>
-            <th style="padding:6px 4px;text-align:left;color:#0F5590;">เบอร์โทรญาติ</th>
-            <th style="padding:6px 4px;text-align:left;color:#0F5590;">ประเภทครุภัณฑ์</th>
-            <th style="padding:6px 4px;text-align:center;color:#0F5590;">วันที่ได้รับ</th>
+          <tr style="background:#F7F4FE;">
+            <th style="padding:6px 4px;text-align:center;color:#5B3FB5;">ลำดับ</th>
+            <th style="padding:6px 4px;text-align:left;color:#5B3FB5;">ชื่อผู้สูงอายุ</th>
+            <th style="padding:6px 4px;text-align:left;color:#5B3FB5;">เบอร์โทรญาติ</th>
+            <th style="padding:6px 4px;text-align:left;color:#5B3FB5;">ประเภทครุภัณฑ์</th>
+            <th style="padding:6px 4px;text-align:center;color:#5B3FB5;">วันที่ได้รับ</th>
           </tr>
         </thead>
-        <tbody>${pendingRows || '<tr><td colspan="5" style="padding:8px;text-align:center;color:#5B7A8C;">ไม่มีรายการค้างคืน</td></tr>'}</tbody>
+        <tbody>${pendingRows || '<tr><td colspan="5" style="padding:8px;text-align:center;color:#6F6688;">ไม่มีรายการค้างคืน</td></tr>'}</tbody>
       </table>
-      ${stats.pendingList.length>18 ? `<div style="font-size:10.5px;color:#5B7A8C;margin-top:6px;">และอีก ${stats.pendingList.length-18} รายการ ดูรายละเอียดทั้งหมดในตารางทะเบียนหน้าถัดไป</div>` : ''}
+      ${stats.pendingList.length>18 ? `<div style="font-size:10.5px;color:#6F6688;margin-top:6px;">และอีก ${stats.pendingList.length-18} รายการ ดูรายละเอียดทั้งหมดในตารางทะเบียนหน้าถัดไป</div>` : ''}
     </div>
 
     <div style="text-align:center;font-size:10.5px;color:#777;border-top:1px solid #eee;padding:6px 0 2px;">
@@ -8519,7 +9018,7 @@ function buildEquipmentRegistryPageHTML(rowsChunk, pageNo, totalPages){
     </tr>`;}).join('');
   return `
   <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#1571BA,#43C1F1);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#7C5CD6,#A58BF0);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:19px;font-weight:700;">ทะเบียนคุมครุภัณฑ์และวัสดุการแพทย์</div>
@@ -8533,15 +9032,15 @@ function buildEquipmentRegistryPageHTML(rowsChunk, pageNo, totalPages){
           <col style="width:6%"><col style="width:16%"><col style="width:12%"><col style="width:13%"><col style="width:20%"><col style="width:12%"><col style="width:8%"><col style="width:13%">
         </colgroup>
         <thead>
-          <tr style="background:#EAF6FC;">
-            <th style="padding:7px 4px;text-align:center;color:#0F5590;">ลำดับ</th>
-            <th style="padding:7px 4px;text-align:left;color:#0F5590;">ชื่อผู้สูงอายุ</th>
-            <th style="padding:7px 4px;text-align:left;color:#0F5590;">เบอร์โทรญาติ</th>
-            <th style="padding:7px 4px;text-align:left;color:#0F5590;">เลขครุภัณฑ์</th>
-            <th style="padding:7px 4px;text-align:left;color:#0F5590;">ประเภทครุภัณฑ์</th>
-            <th style="padding:7px 4px;text-align:center;color:#0F5590;">วันที่ได้รับ</th>
-            <th style="padding:7px 4px;text-align:center;color:#0F5590;">จำนวน</th>
-            <th style="padding:7px 4px;text-align:center;color:#0F5590;">สถานะการคืน</th>
+          <tr style="background:#F7F4FE;">
+            <th style="padding:7px 4px;text-align:center;color:#5B3FB5;">ลำดับ</th>
+            <th style="padding:7px 4px;text-align:left;color:#5B3FB5;">ชื่อผู้สูงอายุ</th>
+            <th style="padding:7px 4px;text-align:left;color:#5B3FB5;">เบอร์โทรญาติ</th>
+            <th style="padding:7px 4px;text-align:left;color:#5B3FB5;">เลขครุภัณฑ์</th>
+            <th style="padding:7px 4px;text-align:left;color:#5B3FB5;">ประเภทครุภัณฑ์</th>
+            <th style="padding:7px 4px;text-align:center;color:#5B3FB5;">วันที่ได้รับ</th>
+            <th style="padding:7px 4px;text-align:center;color:#5B3FB5;">จำนวน</th>
+            <th style="padding:7px 4px;text-align:center;color:#5B3FB5;">สถานะการคืน</th>
           </tr>
         </thead>
         <tbody>${tableRows}</tbody>
@@ -8880,4 +9379,4 @@ renderEquipmentElderlySelect();
 renderEquipmentTable();
 </script>
 </body>
-</html> 
+</html>
