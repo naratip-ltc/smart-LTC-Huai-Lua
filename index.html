@@ -632,6 +632,18 @@ header.app-header .app-header-user span{color:#F5EDFF;}
 .rec-support-item{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #D9CBFF;border-radius:999px;padding:3px 6px 3px 12px;font-size:13px;box-shadow:0 1px 0 #E4DAFF;}
 .rec-support-item button{border:none;background:#F3EEFF;color:#7C3AED;cursor:pointer;font-size:11px;width:20px;height:20px;border-radius:50%;line-height:1;padding:0;}
 .rec-support-item button:hover{background:#E11D48;color:#fff;}
+
+/* ปฏิทินวันเยี่ยม: วันที่เลือกไม่ได้ */
+.calendar-grid .day.disabled{background:#F1EFF5!important;color:#B9B3C7;cursor:not-allowed;opacity:.75;text-decoration:line-through;}
+.calendar-grid .day.disabled .day-sub{text-decoration:none;}
+.calendar-grid .day.today{box-shadow:inset 0 0 0 2px #7C3AED;}
+.calendar-grid .day:not(.disabled):not(.empty):not(.selected):hover{background:#EDE4FF;}
+/* หัวข้อ 4: ตัวหนังสือใหญ่ชัดสำหรับ CG */
+.rec-assess .field > label{font-size:16px!important;font-weight:700!important;color:#3B2A7A!important;font-family:'Kanit','Anuphan',sans-serif;letter-spacing:.2px;margin-bottom:2px;}
+.rec-assess select,.rec-assess input[type=number],.rec-assess input[type=text]{font-size:16px!important;min-height:48px;color:#2B2341;font-weight:500;}
+.rec-assess #recPrevAdlHint{font-size:14.5px!important;font-weight:600;color:#6D28D9!important;background:#F5F0FF;border-left:4px solid #8B5CF6;padding:8px 12px;border-radius:8px;}
+.rec-assess .checkbox-item{font-size:15px;}
+.rec-assess #recHealthStatusBox{font-size:14.5px!important;font-weight:500;}
 </style>
 </head>
 <body>
@@ -830,7 +842,10 @@ header.app-header .app-header-user span{color:#F5EDFF;}
       <option value="admin">ผู้ดูแลระบบ (Admin)</option>
       <option value="care_manager">Care Manager (CM)</option>
       <option value="cg">CG (ผู้ดูแลผู้สูงอายุ)</option>
+      <option value="reporter">ผู้รวบรวมรายงาน (ดู/พิมพ์รายงานเพื่อเบิกจ่ายเงิน CG)</option>
+      <option value="equipment_lender">ผู้ให้ยืม-รับคืนอุปกรณ์ (เมื่อญาติ/ผู้ป่วยมายืมหรือนำมาคืน)</option>
     </select>
+    <p class="muted" id="euRoleHint" style="margin-top:6px;"></p>
   </div>
   <div class="field" id="euCgFieldWrap" style="margin-top:8px;display:none;">
     <label>เชื่อมโยงกับ CG คนไหนในทะเบียน</label>
@@ -993,7 +1008,7 @@ header.app-header .app-header-user span{color:#F5EDFF;}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card rec-assess">
     <h3>4. การประเมินสภาพและการดูแล</h3>
     <div class="row">
       <div class="field"><label>การรับประทานยา</label>
@@ -1848,7 +1863,7 @@ header.app-header .app-header-user span{color:#F5EDFF;}
         <option value="ถุง">ถุง</option><option value="ห่อ">ห่อ</option>
       </select>
     </div>
-    <div class="field"><label>วันที่รับเข้า</label>
+    <div class="field"><label>วันที่ได้รับครุภัณฑ์/วัสดุ (วันที่รับเข้า)</label>
       <input type="hidden" id="invDateReceived">
       <button type="button" class="btn btn-secondary" id="invDateReceivedBtn" style="width:100%;text-align:left;">🗓 <span id="invDateReceivedText">เลือกวันที่</span></button>
     </div>
@@ -2711,6 +2726,8 @@ const ROLE_TABS = {
   admin:        ['dashboard','record','cg','elderly','equipment','pdf','history','users'],
   care_manager: ['dashboard','record','cg','elderly','equipment','pdf','history'],
   cg:           ['dashboard','record','equipment'],
+  reporter:     ['dashboard','pdf','history'],
+  equipment_lender: ['dashboard','equipment'],
   unassigned:   ['dashboard'],
   public:       ['dashboard']
 };
@@ -2718,6 +2735,8 @@ const ROLE_LABELS = {
   admin: 'ผู้ดูแลระบบ (Admin)',
   care_manager: 'Care Manager (CM)',
   cg: 'CG (ผู้ดูแลผู้สูงอายุ)',
+  reporter: 'ผู้รวบรวมรายงาน',
+  equipment_lender: 'ผู้ให้ยืม-รับคืนอุปกรณ์',
   unassigned: 'ยังไม่กำหนดบทบาท',
   public: 'บุคคลทั่วไป'
 };
@@ -2819,6 +2838,9 @@ function applyAccessControl(u){
   document.querySelector('nav.tabs button[data-tab="dashboard"]').classList.add('active');
   document.getElementById('tab-dashboard').classList.add('active');
   document.getElementById('changePasswordBtn').style.display = u ? 'inline-flex' : 'none';
+  /* ผู้ให้ยืม-รับคืนอุปกรณ์: ใช้ได้เฉพาะยืม-คืน และจ่ายวัสดุ ไม่รับของเข้าคลัง */
+  const invAddBtn = document.getElementById('openInvAddModalBtn');
+  if(invAddBtn) invAddBtn.style.display = (u && u.role === 'equipment_lender') ? 'none' : '';
   const recManageCard = document.getElementById('recManageCard');
   if(recManageCard) recManageCard.style.display = (u && u.role === 'admin') ? 'block' : 'none';
   renderDrill();
@@ -3022,6 +3044,7 @@ function openEditUser(uid){
   document.getElementById('euAddress').value = u.address||'';
   document.getElementById('euPhone').value = u.phone||'';
   document.getElementById('euRole').value = u.role || 'unassigned';
+  setTimeout(updateEuRoleHint,0);
   document.getElementById('euError').textContent = '';
   renderEuCgOptions();
   document.getElementById('euCgCode').value = u.cgCode||'';
@@ -3036,6 +3059,16 @@ function renderEuCgOptions(){
   sel.value = cur;
 }
 document.getElementById('euRole').addEventListener('change', toggleEuCgFieldWrap);
+const ROLE_HINTS = {
+  admin:'เข้าถึงได้ทุกเมนู รวมถึงจัดการผู้ใช้งาน',
+  care_manager:'ดูแลภาพรวม CG ผู้สูงอายุ อุปกรณ์ และออกรายงาน',
+  cg:'บันทึกการเยี่ยมของผู้สูงอายุในความรับผิดชอบ',
+  reporter:'เมนูที่ใช้ได้: ภาพรวม · ออกรายงาน · ประวัติผู้สูงอายุ — สำหรับดูและพิมพ์รายงานเพื่อเบิกจ่ายเงินให้ CG',
+  equipment_lender:'เมนูที่ใช้ได้: ภาพรวม · การจัดการอุปกรณ์ (ยืม-คืนครุภัณฑ์ และจ่ายวัสดุ) — ไม่สามารถรับของเข้าคลังได้',
+  unassigned:'ยังเข้าใช้งานได้เฉพาะหน้าภาพรวม'
+};
+function updateEuRoleHint(){ const h=document.getElementById('euRoleHint'); if(h) h.textContent = ROLE_HINTS[document.getElementById('euRole').value]||''; }
+document.getElementById('euRole').addEventListener('change', updateEuRoleHint);
 function toggleEuCgFieldWrap(){
   document.getElementById('euCgFieldWrap').style.display = (document.getElementById('euRole').value==='cg') ? 'block' : 'none';
 }
@@ -3848,6 +3881,7 @@ document.getElementById('editVisitSaveBtn').addEventListener('click', ()=>{
   const date = document.getElementById('editVisitDate').value.trim();
   const note = document.getElementById('editVisitNote').value.trim();
   if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){ toast('รูปแบบวันที่ไม่ถูกต้อง (YYYY-MM-DD)','error'); return; }
+  if(date > visitDateRange().todayIso){ toast('ไม่สามารถกำหนดวันที่เยี่ยมเป็นวันที่ยังไม่ถึงได้','error'); return; }
   db.ref('visits/'+vid).update({visitDate:date, note}).then(()=>{
     toast('แก้ไขสำเร็จ','success'); closeModal('editVisitModal');
   });
@@ -3925,17 +3959,37 @@ document.getElementById('openCalendarBtn').addEventListener('click', ()=>{
     ? `แนะนำให้เลือก ${remaining} วัน (คงเหลือจากเป้าหมาย ${required} ครั้ง/เดือน) - ${TH_MONTHS_FULL[m-1]} ${yBE}`
     : `เยี่ยมครบตามเป้าหมาย ${required} ครั้ง/เดือนแล้ว แต่ยังเลือกวันที่เพิ่มได้หากต้องการ - ${TH_MONTHS_FULL[m-1]} ${yBE}`;
   const grid = document.getElementById('calendarGrid');
+  /* เงื่อนไข: เลือกได้เฉพาะวันที่ผ่านมาแล้ว/วันนี้ ของเดือนปัจจุบัน (ห้ามเลือกวันที่ยังไม่ถึง) — Admin ย้อนเดือนก่อนได้ */
+  const { todayIso, minIso } = visitDateRange();
+  if(dateStr(y,m-1,daysInMonth) < minIso || dateStr(y,m-1,1) > todayIso){
+    document.getElementById('calendarHint').innerHTML += `<br><b style="color:var(--danger);">⛔ เดือนที่เลือกไม่อยู่ในช่วงที่บันทึกได้ — บันทึกได้เฉพาะเดือนปัจจุบัน ตั้งแต่วันที่ 1 ถึงวันนี้เท่านั้น</b>`;
+  } else {
+    document.getElementById('calendarHint').innerHTML += `<br><span style="color:var(--primary-dark);font-weight:600;">✅ เลือกได้ตั้งแต่วันที่ 1 ถึงวันนี้ (${formatThaiDate(todayIso)}) · วันที่ยังไม่ถึงจะกดไม่ได้</span>`;
+  }
   let html = TH_DOW.map(d=>`<div class="dow">${d}</div>`).join('');
   for(let i=0;i<firstDow;i++) html += `<div class="day empty"></div>`;
   for(let d=1; d<=daysInMonth; d++){
     const ds = dateStr(y, m-1, d);
     const sel = STATE.selectedDates.includes(ds) ? 'selected' : '';
-    html += `<div class="day ${sel}" data-date="${ds}" onclick="toggleDate('${ds}')"><b>${d}</b><span class="day-sub">${TH_MONTHS_ABBR[m-1]} ${yBE}</span></div>`;
+    const ok = ds >= minIso && ds <= todayIso;
+    const isToday = ds === todayIso ? 'today' : '';
+    html += ok
+      ? `<div class="day ${sel} ${isToday}" data-date="${ds}" onclick="toggleDate('${ds}')"><b>${d}</b><span class="day-sub">${isToday?'วันนี้':TH_MONTHS_ABBR[m-1]+' '+yBE}</span></div>`
+      : `<div class="day disabled" data-date="${ds}" title="${ds>todayIso?'ยังไม่ถึงวันที่นี้ — บันทึกล่วงหน้าไม่ได้':'เกินช่วงที่บันทึกย้อนหลังได้'}"><b>${d}</b><span class="day-sub">${ds>todayIso?'ยังไม่ถึง':'ปิดแล้ว'}</span></div>`;
   }
   grid.innerHTML = html;
   openModal('calendarModal');
 });
+function visitDateRange(){
+  const now = new Date();
+  const todayIso = dateStr(now.getFullYear(), now.getMonth(), now.getDate());
+  const isAdmin = !!(CURRENT_USER && CURRENT_USER.role === 'admin');
+  const minIso = isAdmin ? '1900-01-01' : dateStr(now.getFullYear(), now.getMonth(), 1);
+  return { todayIso, minIso };
+}
 function toggleDate(ds){
+  const { todayIso, minIso } = visitDateRange();
+  if(ds > todayIso || ds < minIso){ toast('เลือกได้เฉพาะวันที่ของเดือนปัจจุบันที่ผ่านมาแล้วหรือวันนี้เท่านั้น','error'); return; }
   const i = STATE.selectedDates.indexOf(ds);
   if(i>-1) STATE.selectedDates.splice(i,1); else STATE.selectedDates.push(ds);
   document.querySelectorAll(`.calendar-grid .day[data-date="${ds}"]`).forEach(el=>el.classList.toggle('selected'));
@@ -4006,8 +4060,9 @@ document.getElementById('openInvAddModalBtn').addEventListener('click', ()=>{
   document.getElementById('invCategory').value = 'durable';
   document.getElementById('invSource').value = 'งบประมาณ LTC เทศบาล';
   document.getElementById('invSourceOther').style.display = 'none';
-  document.getElementById('invDateReceived').value = '';
-  document.getElementById('invDateReceivedText').textContent = 'เลือกวันที่';
+  { const n = new Date(); const t = dateStr(n.getFullYear(), n.getMonth(), n.getDate());
+    document.getElementById('invDateReceived').value = t;
+    document.getElementById('invDateReceivedText').textContent = formatThaiDate(t); }
   document.getElementById('invAssetCodesWrap').style.display = 'none';
   document.getElementById('invAssetCodesContainer').innerHTML = '';
   updateInvItemTypeSelect();
@@ -4149,6 +4204,9 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
   if(!cgCode || !elderlyId){ toast('กรุณาเลือก CG และผู้สูงอายุ','error'); return; }
   if(files.length===0){ toast('กรุณาเลือกรูปภาพ','error'); return; }
   if(STATE.selectedDates.length===0){ toast('กรุณาเลือกวันที่เยี่ยม','error'); return; }
+  { const { todayIso, minIso } = visitDateRange();
+    const bad = STATE.selectedDates.filter(d=>d>todayIso || d<minIso);
+    if(bad.length){ toast(`มีวันที่ไม่อยู่ในช่วงที่บันทึกได้ (${bad.map(d=>formatThaiDate(d)).join(', ')}) — บันทึกได้เฉพาะเดือนปัจจุบัน ไม่เกินวันนี้`,'error'); return; } }
   if(files.length !== STATE.selectedDates.length){
     toast(`จำนวนรูป (${files.length}) ต้องเท่ากับจำนวนวันที่เลือก (${STATE.selectedDates.length})`,'error'); return;
   }
@@ -7064,7 +7122,10 @@ function renderInventoryTable(){
       codesColumnHtml = '-';
       const matStyle = remaining>0 ? EQ_STATUS_STYLES.available : EQ_STATUS_STYLES.borrowed;
       statusColumnHtml = `<div style="color:${matStyle.color};font-weight:700;">${matStyle.icon} ${remaining>0?'มีของพร้อมจ่าย':'ของหมด/ถูกเบิกครบ'}</div>`;
-      dateColumnHtml = inv.dateReceived ? formatThaiDate(inv.dateReceived,true) : '-';
+      const recs = Object.values(inv.receipts||{}).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+      dateColumnHtml = recs.length
+        ? recs.slice(0,4).map(r=>`<div style="white-space:nowrap;">${formatThaiDate(r.date,true)} <span style="color:#1E7A4B;font-weight:700;">(+${r.qty} ${r.unit||''})</span></div>`).join('') + (recs.length>4?`<div class="muted">และอีก ${recs.length-4} ครั้ง</div>`:'')
+        : (inv.dateReceived ? formatThaiDate(inv.dateReceived,true) : '-');
     }
 
     return `
@@ -7735,6 +7796,7 @@ function openInventoryDetail(id){
       <div>💰 <b>แหล่งงบประมาณ:</b> ${inv.source||'-'}</div>
       <div>🕒 <b>อัปเดตล่าสุด:</b> ${inv.updatedAt ? formatThaiDate(new Date(inv.updatedAt).toISOString().slice(0,10)) : '-'}</div>
       ${inv.dateReceived ? `<div>📥 <b>รับเข้าล่าสุด:</b> ${formatThaiDate(inv.dateReceived)}</div>` : ''}
+      ${Object.keys(inv.receipts||{}).length ? `<div style="margin-top:6px;"><b>🗓 ประวัติการรับเข้า:</b>${Object.values(inv.receipts).sort((a,b)=>(b.date||'').localeCompare(a.date||'')).map(r=>`<div style="margin-left:10px;">• ${formatThaiDate(r.date)} — รับ ${r.qty} ${escHtml(r.unit||'')}${r.source?` (${escHtml(r.source)})`:''}${(r.codes&&r.codes.length)?` เลข: ${r.codes.map(escHtml).join(', ')}`:''}</div>`).join('')}</div>` : ''}
     </div>
     ${isDurable ? `<div style="margin-top:10px;"><b style="font-size:13px;">เลขครุภัณฑ์ทั้งหมด (สถานะรายชิ้น):</b><div style="margin-top:6px;display:flex;flex-direction:column;gap:6px;">${codesHtml}</div></div>` : ''}
   `;
@@ -7871,6 +7933,9 @@ document.getElementById('addInventoryBtn').addEventListener('click', ()=>{
     availableAssetCodes: newAllAvail,
     codeDetails: cat==='durable' ? newCodeDetails : {},
     dateReceived,
+    receipts: Object.assign({}, existing ? (existing[1].receipts||{}) : {}, {
+      ['R'+Date.now()]: { date: dateReceived, qty: quantity, unit: unit || (existing ? existing[1].unit : ''), source, note, codes: newAssetCodes, by: CURRENT_USER ? CURRENT_USER.displayName : '-' }
+    }),
     updatedAt: Date.now()
   }).then(()=>{
       toast(`รับเข้าคลัง "${itemType}" จำนวน ${quantity} สำเร็จ (ยอดรวมล่าสุด ${finalQty})`,'success');
